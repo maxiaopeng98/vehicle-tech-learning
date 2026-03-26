@@ -168,6 +168,832 @@
                 </div>
             </section>
             
+            <!-- 2. 定义与分类 -->
+            <section class="learning-section" id="definition">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div><h2 class="section-title">2. 定义与分类</h2><p class="section-subtitle">EREV的准确定义、技术分类及标准规范</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔍 技术定义</h3>
+                    <div class="card-content">
+                        <p><strong>增程式电动汽车 (Extended-Range Electric Vehicle, EREV)</strong> 是一种特殊的混合动力汽车，其特点是：</p>
+                        <ul>
+                            <li><strong>发动机不直接驱动车轮</strong>：内燃机（增程器）仅作为发电机使用</li>
+                            <li><strong>纯电驱动</strong>：车辆始终由电动机驱动，提供纯电驾驶体验</li>
+                            <li><strong>电池优先</strong>：优先使用电池电量，电量不足时启动增程器发电</li>
+                            <li><strong>可外接充电</strong>：可通过充电桩为电池充电</li>
+                        </ul>
+                        <p><strong>国家标准定义 (GB/T 19596-2017)</strong>：具有可外接充电功能，且纯电续驶里程满足一定要求的混合动力电动汽车。</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 技术分类</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>分类维度</th><th>类型</th><th>特点</th><th>代表车型</th></tr>
+                            <tr><td rowspan="2">增程器类型</td><td>汽油增程器</td><td>技术成熟，成本低</td><td>理想ONE、问界M5</td></tr>
+                            <tr><td>柴油增程器</td><td>热效率高，扭矩大</td><td>部分商用车</td></tr>
+                            <tr><td rowspan="2">电池容量</td><td>大电池型 (40-50kWh)</td><td>纯电续航长，增程器使用少</td><td>理想L9</td></tr>
+                            <tr><td>小电池型 (20-30kWh)</td><td>成本低，增程器使用频繁</td><td>早期EREV车型</td></tr>
+                            <tr><td rowspan="2">控制策略</td><td>电量维持型</td><td>电池SOC保持稳定</td><td>长途行驶模式</td></tr>
+                            <tr><td>电量消耗型</td><td>优先使用电池电量</td><td>日常通勤模式</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📋 技术标准与规范</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">GB/T 标准</div>
+                                <p>GB/T 19596-2017 电动汽车术语</p>
+                                <p>GB/T 32960-2016 电动汽车远程服务与管理系统</p>
+                                <p>GB/T 18488-2015 电动汽车用驱动电机系统</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">ISO 标准</div>
+                                <p>ISO 26262 道路车辆功能安全</p>
+                                <p>ISO 19453 电动道路车辆安全要求</p>
+                                <p>ISO 15118 车辆到电网通信</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业规范</div>
+                                <p>SAE J1772 电动汽车传导充电</p>
+                                <p>IEC 61851 电动汽车充电系统</p>
+                                <p>UN ECE R100 电动汽车安全法规</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 3. 工作原理 -->
+            <section class="learning-section" id="principle">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <div><h2 class="section-title">3. 工作原理</h2><p class="section-subtitle">EREV的系统架构、能量流动及控制策略</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔄 系统架构</h3>
+                    <div class="card-content">
+                        <p>EREV的系统架构主要包括以下核心组件：</p>
+                        <ul>
+                            <li><strong>动力电池系统</strong>：存储电能，为驱动电机供电</li>
+                            <li><strong>驱动电机系统</strong>：将电能转换为机械能，驱动车辆</li>
+                            <li><strong>增程器系统</strong>：内燃机+发电机组合，为电池充电</li>
+                            <li><strong>整车控制器 (VCU)</strong>：协调各系统工作</li>
+                            <li><strong>热管理系统</strong>：管理电池、电机、增程器温度</li>
+                        </ul>
+                        <p><strong>典型EREV系统架构图</strong>：</p>
+                        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                            <p style="text-align: center; color: var(--erev-color); font-weight: 600;">能量流动示意图</p>
+                            <p style="text-align: center; margin: 10px 0;">
+                                🔋 电池 → ⚡ 电控 → 🚗 电机 → 🛞 车轮<br>
+                                ⛽ 燃油 → 🔥 发动机 → ⚡ 发电机 → 🔋 电池
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 能量管理策略</h3>
+                    <div class="card-content">
+                        <p>EREV的能量管理是其核心技术，主要包括以下模式：</p>
+                        <table class="tech-table">
+                            <tr><th>工作模式</th><th>电池SOC</th><th>增程器状态</th><th>适用场景</th><th>能量效率</th></tr>
+                            <tr><td>纯电模式</td><td>>30%</td><td>关闭</td><td>市区短途</td><td>最高 (90-95%)</td></tr>
+                            <tr><td>增程模式</td><td>15-30%</td><td>高效区间运行</td><td>长途高速</td><td>中 (75-85%)</td></tr>
+                            <tr><td>充电模式</td><td><15%</td><td>全力发电</td><td>应急补电</td><td>低 (70-80%)</td></tr>
+                            <tr><td>制动回收</td><td>任何状态</td><td>关闭</td><td>减速下坡</td><td>回收60-70%</td></tr>
+                        </table>
+                        <p><strong>智能控制策略</strong>：</p>
+                        <ul>
+                            <li><strong>基于导航的预测控制</strong>：根据路线规划提前启动增程器</li>
+                            <li><strong>基于路况的自适应控制</strong>：根据拥堵情况调整SOC目标</li>
+                            <li><strong>基于温度的优化控制</strong>：低温环境下优化增程器启停</li>
+                            <li><strong>基于成本的优化控制</strong>：根据电价/油价选择最优模式</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 关键技术参数</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电池系统参数</div>
+                                <p>容量：40-50 kWh</p>
+                                <p>电压：350-400V</p>
+                                <p>能量密度：180-220 Wh/kg</p>
+                                <p>循环寿命：≥2000次</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">增程器参数</div>
+                                <p>排量：1.2-1.5L</p>
+                                <p>功率：60-100 kW</p>
+                                <p>热效率：38-42%</p>
+                                <p>NVH水平：≤65 dB</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">整车性能</div>
+                                <p>纯电续航：150-250 km</p>
+                                <p>综合续航：800-1200 km</p>
+                                <p>百公里电耗：15-20 kWh</p>
+                                <p>百公里油耗：6-8 L</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 4. 核心组件 -->
+            <section class="learning-section" id="components">
+                <div class="section-header">
+                    <div class="section-icon">🔧</div>
+                    <div><h2 class="section-title">4. 核心组件</h2><p class="section-subtitle">EREV关键部件的技术参数、功能要求及选型原则</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 动力电池系统</h3>
+                    <div class="card-content">
+                        <p><strong>技术要求</strong>：</p>
+                        <ul>
+                            <li><strong>高能量密度</strong>：≥180 Wh/kg，保证纯电续航</li>
+                            <li><strong>高功率密度</strong>：≥1500 W/kg，满足加速需求</li>
+                            <li><strong>长循环寿命</strong>：≥2000次，保证使用寿命</li>
+                            <li><strong>宽温度适应性</strong>：-30℃~55℃正常工作</li>
+                            <li><strong>高安全性</strong>：通过针刺、挤压、过充等测试</li>
+                        </ul>
+                        <p><strong>电池类型对比</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>电池类型</th><th>能量密度</th><th>循环寿命</th><th>成本</th><th>安全性</th><th>应用</th></tr>
+                            <tr><td>三元锂 (NCM)</td><td>高 (200-280)</td><td>中 (1500-2000)</td><td>高</td><td>中</td><td>主流EREV</td></tr>
+                            <tr><td>磷酸铁锂 (LFP)</td><td>中 (160-200)</td><td>高 (3000+)</td><td>低</td><td>高</td><td>成本敏感型</td></tr>
+                            <tr><td>固态电池</td><td>很高 (300+)</td><td>待验证</td><td>很高</td><td>很高</td><td>未来技术</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 驱动电机系统</h3>
+                    <div class="card-content">
+                        <p><strong>电机类型选择</strong>：</p>
+                        <ul>
+                            <li><strong>永磁同步电机 (PMSM)</strong>：效率高、功率密度高，主流选择</li>
+                            <li><strong>异步感应电机 (IM)</strong>：成本低、可靠性高，适合后驱辅助</li>
+                            <li><strong>开关磁阻电机 (SRM)</strong>：结构简单、成本低，但噪音大</li>
+                        </ul>
+                        <p><strong>技术参数要求</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">前驱电机</div>
+                                <p>功率：150-200 kW</p>
+                                <p>扭矩：300-400 N·m</p>
+                                <p>效率：≥96%</p>
+                                <p>冷却方式：水冷</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">后驱电机</div>
+                                <p>功率：80-120 kW</p>
+                                <p>扭矩：200-300 N·m</p>
+                                <p>效率：≥95%</p>
+                                <p>冷却方式：油冷</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电控系统</div>
+                                <p>IGBT/SiC模块</p>
+                                <p>开关频率：10-20 kHz</p>
+                                <p>控制精度：±1%</p>
+                                <p>防护等级：IP67</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 增程器系统</h3>
+                    <div class="card-content">
+                        <p><strong>增程器设计要求</strong>：</p>
+                        <ul>
+                            <li><strong>高效工作区间</strong>：在最佳热效率点附近运行</li>
+                            <li><strong>低NVH</strong>：启停平顺，运行噪音低</li>
+                            <li><strong>快速响应</strong>：发电功率快速调节</li>
+                            <li><strong>高可靠性</strong>：长时间稳定运行</li>
+                            <li><strong>低排放</strong>：满足国六b排放标准</li>
+                        </ul>
+                        <p><strong>增程器技术方案</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>技术方案</th><th>优点</th><th>缺点</th><th>应用车型</th></tr>
+                            <tr><td>专用增程发动机</td><td>效率高、NVH好</td><td>开发成本高</td><td>理想系列</td></tr>
+                            <tr><td>通用发动机改造</td><td>成本低、开发快</td><td>效率较低</td><td>早期EREV</td></tr>
+                            <tr><td>转子发动机</td><td>体积小、振动小</td><td>油耗高、排放差</td><td>马自达MX-30</td></tr>
+                            <tr><td>燃气轮机</td><td>燃料适应性广</td><td>成本高、响应慢</td><td>概念车</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 5. 材料科学 -->
+            <section class="learning-section" id="materials">
+                <div class="section-header">
+                    <div class="section-icon">🧪</div>
+                    <div><h2 class="section-title">5. 材料科学</h2><p class="section-subtitle">EREV关键材料的性能要求、选择标准及发展趋势</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 电池材料</h3>
+                    <div class="card-content">
+                        <p><strong>正极材料</strong>：</p>
+                        <ul>
+                            <li><strong>三元材料 (NCM)</strong>：镍钴锰酸锂，高能量密度，但热稳定性较差</li>
+                            <li><strong>磷酸铁锂 (LFP)</strong>：安全性好，循环寿命长，但能量密度较低</li>
+                            <li><strong>高镍材料 (NCM811/NCA)</strong>：镍含量≥80%，能量密度高，但加工难度大</li>
+                            <li><strong>富锂锰基</strong>：理论容量高，但电压衰减严重</li>
+                        </ul>
+                        <p><strong>负极材料</strong>：</p>
+                        <ul>
+                            <li><strong>石墨</strong>：技术成熟，成本低，但容量有限</li>
+                            <li><strong>硅碳复合材料</strong>：容量高（4200 mAh/g），但体积膨胀严重</li>
+                            <li><strong>钛酸锂 (LTO)</strong>：循环寿命长，安全性好，但电压低、成本高</li>
+                        </ul>
+                        <p><strong>电解液与隔膜</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电解液</div>
+                                <p>锂盐：LiPF₆、LiFSI</p>
+                                <p>溶剂：EC、PC、DMC、EMC</p>
+                                <p>添加剂：VC、FEC、PS</p>
+                                <p>固态电解质：聚合物、氧化物、硫化物</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">隔膜</div>
+                                <p>材质：PE、PP、陶瓷涂层</p>
+                                <p>厚度：12-25 μm</p>
+                                <p>孔隙率：40-60%</p>
+                                <p>热关闭温度：130-150℃</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电机材料</h3>
+                    <div class="card-content">
+                        <p><strong>永磁材料</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>材料类型</th><th>剩磁 Br (T)</th><th>矫顽力 Hc (kA/m)</th><th>最大磁能积 (kJ/m³)</th><th>工作温度</th><th>成本</th></tr>
+                            <tr><td>钕铁硼 (NdFeB)</td><td>1.0-1.4</td><td>800-2000</td><td>200-400</td><td>≤180℃</td><td>高</td></tr>
+                            <tr><td>铁氧体</td><td>0.2-0.4</td><td>200-400</td><td>20-40</td><td>≤250℃</td><td>低</td></tr>
+                            <tr><td>钐钴 (SmCo)</td><td>0.8-1.1</td><td>600-2000</td><td>150-240</td><td>≤350℃</td><td>很高</td></tr>
+                        </table>
+                        <p><strong>硅钢片</strong>：</p>
+                        <ul>
+                            <li><strong>无取向硅钢</strong>：磁各向同性，用于定子铁芯</li>
+                            <li><strong>取向硅钢</strong>：磁各向异性，用于变压器</li>
+                            <li><strong>薄规格</strong>：0.2-0.35 mm，降低铁损</li>
+                            <li><strong>高牌号</strong>：35W250、50W350，低铁损高磁感</li>
+                        </ul>
+                        <p><strong>绝缘材料</strong>：</p>
+                        <ul>
+                            <li><strong>绝缘漆</strong>：聚酯、聚酰亚胺、环氧树脂</li>
+                            <li><strong>绝缘纸</strong>：Nomex、DMD、预浸料</li>
+                            <li><strong>绝缘等级</strong>：H级（180℃）、F级（155℃）</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 热管理材料</h3>
+                    <div class="card-content">
+                        <p><strong>导热材料</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">导热界面材料</div>
+                                <p>导热硅脂：1-5 W/m·K</p>
+                                <p>导热垫片：3-8 W/m·K</p>
+                                <p>相变材料：5-15 W/m·K</p>
+                                <p>石墨烯片：1000+ W/m·K</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">冷却介质</div>
+                                <p>乙二醇水溶液：-40℃~120℃</p>
+                                <p>绝缘油：变压器油、硅油</p>
+                                <p>制冷剂：R134a、R1234yf</p>
+                                <p>液态金属：Ga基合金</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">结构材料</div>
+                                <p>铝合金：密度低，导热好</p>
+                                <p>铜合金：导热极好，成本高</p>
+                                <p>复合材料：CFRP、GFRP</p>
+                                <p>相变储能材料：石蜡、水合盐</p>
+                            </div>
+                        </div>
+                        <p><strong>轻量化材料</strong>：</p>
+                        <ul>
+                            <li><strong>高强度钢</strong>：980MPa、1180MPa、1500MPa</li>
+                            <li><strong>铝合金</strong>：5系、6系、7系</li>
+                            <li><strong>镁合金</strong>：AZ91D、AM60B</li>
+                            <li><strong>碳纤维复合材料</strong>：T700、T800</li>
+                            <li><strong>工程塑料</strong>：PA、PBT、PPS</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 6. 制造工艺 -->
+            <section class="learning-section" id="manufacturing">
+                <div class="section-header">
+                    <div class="section-icon">🏭</div>
+                    <div><h2 class="section-title">6. 制造工艺</h2><p class="section-subtitle">EREV关键部件的生产工艺、装配流程及质量控制要点</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 电池包制造工艺</h3>
+                    <div class="card-content">
+                        <p><strong>电芯制造流程</strong>：</p>
+                        <ol>
+                            <li><strong>电极制备</strong>：混料→涂布→辊压→分切</li>
+                            <li><strong>装配</strong>：卷绕/叠片→入壳→注液→封口</li>
+                            <li><strong>化成</strong>：首次充电→老化→分容</li>
+                            <li><strong>检测</strong>：OCV测试→内阻测试→自放电测试</li>
+                        </ol>
+                        <p><strong>电池包组装流程</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工序</th><th>工艺要点</th><th>设备要求</th><th>质量控制</th></tr>
+                            <tr><td>模组装配</td><td>电芯堆叠、Busbar焊接</td><td>自动堆叠机、激光焊</td><td>焊接强度、绝缘电阻</td></tr>
+                            <tr><td>热管理集成</td><td>冷却板安装、管路连接</td><td>自动涂胶机、拧紧机</td><td>密封性、导热性</td></tr>
+                            <tr><td>BMS安装</td><td>线束连接、传感器安装</td><td>自动压接、视觉检测</td><td>信号精度、连接可靠性</td></tr>
+                            <tr><td>壳体封装</td><td>上下盖合装、密封测试</td><td>自动拧紧、气密检测</td><td>IP67防护、结构强度</td></tr>
+                        </table>
+                        <p><strong>关键工艺参数</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">焊接工艺</div>
+                                <p>激光焊：功率2-4 kW</p>
+                                <p>超声波焊：频率20 kHz</p>
+                                <p>电阻焊：压力200-500 N</p>
+                                <p>焊接强度：≥母材80%</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">密封工艺</div>
+                                <p>密封胶：硅胶、聚氨酯</p>
+                                <p>密封圈：EPDM、氟橡胶</p>
+                                <p>测试压力：10-20 kPa</p>
+                                <p>泄漏率：≤1 Pa·L/s</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">测试工艺</div>
+                                <p>EOL测试：充放电曲线</p>
+                                <p>绝缘测试：≥500 V/100 MΩ</p>
+                                <p>气密测试：保压30秒</p>
+                                <p>振动测试：XYZ三轴</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电机定子制造工艺</h3>
+                    <div class="card-content">
+                        <p><strong>定子铁芯制造</strong>：</p>
+                        <ul>
+                            <li><strong>冲压</strong>：高速冲床，模具精度±0.01 mm</li>
+                            <li><strong>叠压</strong>：自动叠铆，叠压系数≥0.97</li>
+                            <li><strong>焊接</strong>：激光焊接，焊缝强度≥300 MPa</li>
+                            <li><strong>去毛刺</strong>：磁力研磨，Ra≤1.6 μm</li>
+                        </ul>
+                        <p><strong>绕组制造工艺</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工艺类型</th><th>特点</th><th>适用电机</th><th>工艺难点</th></tr>
+                            <tr><td>集中绕组</td><td>工艺简单，槽满率高</td><td>小功率电机</td><td>端部尺寸大</td></tr>
+                            <tr><td>分布式绕组</td><td>谐波小，效率高</td><td>大功率电机</td><td>嵌线难度大</td></tr>
+                            <tr><td>发卡绕组</td><td>槽满率高，散热好</td><td>扁线电机</td><td>设备投资大</td></tr>
+                            <tr><td>波绕组</td><td>跨距大，谐波小</td><td>高速电机</td><td>工艺复杂</td></tr>
+                        </table>
+                        <p><strong>绝缘处理工艺</strong>：</p>
+                        <ul>
+                            <li><strong>浸渍工艺</strong>：真空压力浸渍（VPI）、滴浸、沉浸</li>
+                            <li><strong>固化工艺</strong>：热风固化、红外固化、紫外固化</li>
+                            <li><strong>绝缘测试</strong>：耐压测试（≥2Un+1000V）、局部放电</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 增程器装配工艺</h3>
+                    <div class="card-content">
+                        <p><strong>发动机装配线</strong>：</p>
+                        <ol>
+                            <li><strong>缸体装配</strong>：主轴瓦安装→曲轴安装→活塞连杆装配</li>
+                            <li><strong>缸盖装配</strong>：气门安装→凸轮轴安装→摇臂装配</li>
+                            <li><strong>总成装配</strong>：缸盖合装→正时系统→附件安装</li>
+                            <li><strong>测试调整</strong>：冷试→热试→排放测试</li>
+                        </ol>
+                        <p><strong>发电机装配要点</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">定子装配</div>
+                                <p>铁芯压装：压力50-100吨</p>
+                                <p>绕组嵌线：自动嵌线机</p>
+                                <p>浸渍固化：VPI工艺</p>
+                                <p>动平衡：≤0.5 g·mm/kg</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">转子装配</div>
+                                <p>磁钢安装：自动充磁</p>
+                                <p>动平衡：G2.5级</p>
+                                <p>轴承安装：过盈配合</p>
+                                <p>轴伸跳动：≤0.02 mm</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">总成测试</div>
+                                <p>空载测试：电压、频率</p>
+                                <p>负载测试：效率曲线</p>
+                                <p>温升测试：绝缘等级</p>
+                                <p>振动测试：≤2.8 mm/s</p>
+                            </div>
+                        </div>
+                        <p><strong>NVH控制工艺</strong>：</p>
+                        <ul>
+                            <li><strong>隔音材料</strong>：声学包、隔音棉、阻尼片</li>
+                            <li><strong>减振措施</strong>：液压悬置、橡胶减振器</li>
+                            <li><strong>平衡优化</strong>：曲轴动平衡、飞轮平衡</li>
+                            <li><strong>密封优化</strong>：进气系统、排气系统密封</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 7. 质量管理 -->
+            <section class="learning-section" id="quality">
+                <div class="section-header">
+                    <div class="section-icon">✅</div>
+                    <div><h2 class="section-title">7. 质量管理</h2><p class="section-subtitle">EREV制造过程的质量控制体系、标准要求及改进方法</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📋 质量管理体系</h3>
+                    <div class="card-content">
+                        <p><strong>IATF 16949 汽车行业质量管理体系</strong>：</p>
+                        <ul>
+                            <li><strong>过程方法</strong>：识别、管理、改进关键过程</li>
+                            <li><strong>风险思维</strong>：预防为主，识别和控制风险</li>
+                            <li><strong>顾客导向</strong>：以顾客要求为关注焦点</li>
+                            <li><strong>持续改进</strong>：PDCA循环，不断提升</li>
+                        </ul>
+                        <p><strong>五大核心工具</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工具</th><th>全称</th><th>应用阶段</th><th>主要输出</th></tr>
+                            <tr><td>APQP</td><td>产品质量先期策划</td><td>产品开发</td><td>控制计划、FMEA</td></tr>
+                            <tr><td>PPAP</td><td>生产件批准程序</td><td>批量生产前</td><td>PSW、尺寸报告</td></tr>
+                            <tr><td>FMEA</td><th>失效模式与影响分析</th><td>设计/过程</td><td>风险优先数RPN</td></tr>
+                            <tr><td>SPC</td><td>统计过程控制</td><td>生产过程</td><td>控制图、过程能力</td></tr>
+                            <tr><td>MSA</td><td>测量系统分析</td><td>测量系统</td><td>GR&R、偏倚、线性</td></tr>
+                        </table>
+                        <p><strong>质量管理要点</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">设计质量</div>
+                                <p>DFMEA：设计失效分析</p>
+                                <p>DVP&R：设计验证计划</p>
+                                <p>公差分析：尺寸链计算</p>
+                                <p>可靠性设计：MTBF≥10万小时</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">过程质量</div>
+                                <p>PFMEA：过程失效分析</p>
+                                <p>控制计划：关键特性控制</p>
+                                <p>防错设计：Poka-Yoke</p>
+                                <p>标准化作业：SOP、SIP</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">供应商质量</div>
+                                <p>供应商审核：QSA、QPA</p>
+                                <p>来料检验：IQC、AQL</p>
+                                <p>供应商开发：SQE支持</p>
+                                <p>绩效评价：QCDS评分</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔍 关键特性控制</h3>
+                    <div class="card-content">
+                        <p><strong>电池系统关键特性</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>特性类别</th><th>关键特性</th><th>控制方法</th><th>公差要求</th><th>测量工具</th></tr>
+                            <tr><td>电性能</td><td>电压一致性</td><td>SPC控制图</td><td>±50 mV</td><td>电池测试仪</td></tr>
+                            <tr><td>电性能</td><td>内阻一致性</td><td>100%测试</td><td>±10%</td><td>内阻测试仪</td></tr>
+                            <tr><td>结构</td><td>焊接强度</td><td>破坏性测试</td><td>≥母材80%</td><td>拉力测试机</td></tr>
+                            <tr><td>密封</td><td>气密性</td><td>100%测试</td><td>≤1 Pa·L/s</td><td>气密测试仪</td></tr>
+                            <tr><td>安全</td><td>绝缘电阻</td><td>100%测试</td><td>≥100 MΩ</td><td>绝缘测试仪</td></tr>
+                        </table>
+                        <p><strong>电机系统关键特性</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>特性类别</th><th>关键特性</th><th>控制方法</th><th>公差要求</th><th>测量工具</th></tr>
+                            <tr><td>电气</td><td>绕组电阻</td><td>SPC控制</td><td>±5%</td><td>微欧计</td></tr>
+                            <tr><td>电气</td><td>绝缘电阻</td><td>100%测试</td><td>≥500 MΩ</td><td>绝缘测试仪</td></tr>
+                            <tr><td>机械</td><td>轴伸跳动</td><td>100%测试</td><td>≤0.02 mm</td><td>跳动仪</td></tr>
+                            <tr><td>机械</td><td>动平衡</td><td>100%测试</td><td>G2.5级</td><td>动平衡机</td></tr>
+                            <tr><td>性能</td><td>效率</td><td>抽样测试</td><td>≥96%</td><td>测功机</td></tr>
+                        </table>
+                        <p><strong>增程器关键特性</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">性能特性</div>
+                                <p>额定功率：±3%</p>
+                                <p>热效率：≥38%</p>
+                                <p>排放：国六b标准</p>
+                                <p>NVH：≤65 dB(A)</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">可靠性</div>
+                                <p>MTBF：≥5000小时</p>
+                                <p>冷启动：-30℃</p>
+                                <p>耐久性：1000小时</p>
+                                <p>振动：≤2.8 mm/s</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">装配质量</div>
+                                <p>拧紧扭矩：±10%</p>
+                                <p>密封性：无泄漏</p>
+                                <p>清洁度：≤10 mg</p>
+                                <p>错漏装：0 PPM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 过程能力分析</h3>
+                    <div class="card-content">
+                        <p><strong>过程能力指数要求</strong>：</p>
+                        <ul>
+                            <li><strong>Cpk ≥ 1.33</strong>：关键特性，过程稳定受控</li>
+                            <li><strong>Cpk ≥ 1.67</strong>：重要特性，过程能力充足</li>
+                            <li><strong>Ppk ≥ 1.67</strong>：初始过程能力，小批量验证</li>
+                            <li><strong>PPK ≥ 2.0</strong>：六西格玛水平，卓越过程</li>
+                        </ul>
+                        <p><strong>常见质量问题及对策</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>问题类型</th><th>根本原因</th><th>短期对策</th><th>长期对策</th><th>防错措施</th></tr>
+                            <tr><td>电池电压不一致</td><td>电芯分选不严</td><td>加强分选</td><td>优化分选算法</td><td>自动分选机</td></tr>
+                            <tr><td>焊接虚焊</td><td>参数不稳定</td><td>调整参数</td><td>设备维护保养</td><td>焊接监控系统</td></tr>
+                            <tr><td>密封泄漏</td><td>密封胶涂布不均</td><td>人工补胶</td><td>优化涂胶轨迹</td><td>视觉检测系统</td></tr>
+                            <tr><td>绝缘不良</td><td>绝缘材料污染</td><td>清洁处理</td><td>改善环境清洁度</td><td>自动清洁设备</td></tr>
+                        </table>
+                        <p><strong>质量改进工具</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">问题分析</div>
+                                <p>5Why分析：根本原因</p>
+                                <p>鱼骨图：原因分类</p>
+                                <p>柏拉图：问题排序</p>
+                                <p>散点图：相关性分析</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">改进方法</div>
+                                <p>8D报告：系统改进</p>
+                                <p>PDCA循环：持续改进</p>
+                                <p>六西格玛：DMAIC</p>
+                                <p>精益生产：消除浪费</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">预防措施</div>
+                                <p>防错设计：Poka-Yoke</p>
+                                <p>标准化：SOP、SIP</p>
+                                <p>培训教育：技能提升</p>
+                                <p>定期审核：体系维护</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 8. 市场应用 -->
+            <section class="learning-section" id="application">
+                <div class="section-header">
+                    <div class="section-icon">📈</div>
+                    <div><h2 class="section-title">8. 市场应用</h2><p class="section-subtitle">EREV市场现状、发展趋势及应用场景分析</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🌍 全球市场现状</h3>
+                    <div class="card-content">
+                        <p><strong>市场规模（2025年）</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>地区</th><th>销量（万辆）</th><th>市场份额</th><th>年增长率</th><th>主要品牌</th></tr>
+                            <tr><td>中国</td><td>120</td><td>85%</td><td>35%</td><td>理想、问界、岚图</td></tr>
+                            <tr><td>欧洲</td><td>15</td><td>10%</td><td>25%</td><td>宝马、奥迪、奔驰</td></tr>
+                            <tr><td>北美</td><td>5</td><td>3%</td><td>20%</td><td>通用、福特</td></tr>
+                            <tr><td>其他</td><td>2</td><td>2%</td><td>15%</td><td>丰田、本田</td></tr>
+                            <tr><td>全球合计</td><td>142</td><td>100%</td><td>30%</td><td>-</td></tr>
+                        </table>
+                        <p><strong>中国市场特点</strong>：</p>
+                        <ul>
+                            <li><strong>政策支持</strong>：新能源汽车补贴、免购置税、不限行</li>
+                            <li><strong>用户需求</strong>：续航焦虑、充电不便、家庭出行</li>
+                            <li><strong>产品定位</strong>：中高端SUV，家庭用户为主</li>
+                            <li><strong>技术路线</strong>：以大电池+高效增程器为主</li>
+                            <li><strong>竞争格局</strong>：理想汽车占据主导地位</li>
+                        </ul>
+                        <p><strong>主要品牌及车型</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">理想汽车</div>
+                                <p>理想ONE：首款EREV，月销过万</p>
+                                <p>理想L9：全尺寸SUV，45.98万</p>
+                                <p>理想L8：中大型SUV，35.98万</p>
+                                <p>理想L7：中大型SUV，31.98万</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">华为问界</div>
+                                <p>问界M5：中型SUV，25.98万</p>
+                                <p>问界M7：中大型SUV，31.98万</p>
+                                <p>问界M9：全尺寸SUV，46.98万</p>
+                                <p>技术特点：华为DriveONE</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">其他品牌</div>
+                                <p>岚图FREE：31.36万</p>
+                                <p>哪吒S：24.58万</p>
+                                <p>深蓝SL03：17.19万</p>
+                                <p>仰望U8：109.8万</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🚀 技术发展趋势</h3>
+                    <div class="card-content">
+                        <p><strong>2025-2030年技术趋势</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>技术领域</th><th>当前水平</th><th>2025年目标</th><th>2030年展望</th><th>技术路径</th></tr>
+                            <tr><td>电池能量密度</td><td>180-220 Wh/kg</td><td>250-300 Wh/kg</td><td>350-400 Wh/kg</td><td>固态电池</td></tr>
+                            <tr><td>增程器热效率</td><td>38-42%</td><td>45-48%</td><td>50-55%</td><td>阿特金森循环</td></tr>
+                            <tr><td>系统效率</td><td>75-85%</td><td>85-90%</td><td>90-95%</td><td>SiC电控</td></tr>
+                            <tr><td>成本</td><td>比BEV高10%</td><td>与BEV持平</td><td>比BEV低5%</td><td>规模化生产</td></tr>
+                            <tr><td>续航里程</td><td>800-1200 km</td><td>1200-1500 km</td><td>1500-2000 km</td><td>高效增程器</td></tr>
+                        </table>
+                        <p><strong>关键技术突破方向</strong>：</p>
+                        <ul>
+                            <li><strong>高效增程器</strong>：阿特金森循环、可变压缩比、废气再循环</li>
+                            <li><strong>智能能量管理</strong>：AI预测控制、车路协同、云端优化</li>
+                            <li><strong>集成化设计</strong>：三合一电驱、多合一控制器、一体化热管理</li>
+                            <li><strong>新材料应用</strong>：碳化硅、氮化镓、固态电解质、轻量化材料</li>
+                            <li><strong>智能化升级</strong>：智能座舱、自动驾驶、车联网、OTA升级</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 应用场景分析</h3>
+                    <div class="card-content">
+                        <p><strong>适用场景</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">家庭用户</div>
+                                <p>需求：空间大、续航长、安全</p>
+                                <p>车型：中大型SUV、MPV</p>
+                                <p>使用：日常通勤+周末出游</p>
+                                <p>优势：无里程焦虑、用车成本低</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">商务用户</div>
+                                <p>需求：舒适、安静、形象</p>
+                                <p>车型：豪华轿车、SUV</p>
+                                <p>使用：商务接待、长途出差</p>
+                                <p>优势：纯电安静、燃油续航</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">特殊场景</div>
+                                <p>需求：特定环境适应性</p>
+                                <p>车型：越野车、特种车辆</p>
+                                <p>使用：高原、寒冷、偏远地区</p>
+                                <p>优势：能源补充灵活</p>
+                            </div>
+                        </div>
+                        <p><strong>市场前景预测</strong>：</p>
+                        <ul>
+                            <li><strong>短期（2025-2027）</strong>：EREV销量占比提升至10-15%，主要在中高端市场</li>
+                            <li><strong>中期（2028-2030）</strong>：EREV技术成熟，成本下降，向中低端市场渗透</li>
+                            <li><strong>长期（2031-2035）</strong>：EREV作为过渡技术，逐步被纯电动和燃料电池替代</li>
+                            <li><strong>影响因素</strong>：充电基础设施、电池技术突破、政策导向、用户习惯</li>
+                        </ul>
+                        <p><strong>竞争策略建议</strong>：</p>
+                        <ol>
+                            <li><strong>差异化定位</strong>：聚焦家庭用户，提供大空间、长续航产品</li>
+                            <li><strong>技术领先</strong>：持续优化增程器效率，降低油耗</li>
+                            <li><strong>成本控制</strong>：通过规模化生产降低制造成本</li>
+                            <li><strong>生态建设</strong>：构建充电、服务、二手车全生命周期生态</li>
+                            <li><strong>品牌建设</strong>：打造科技、家庭、可靠的品牌形象</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 9. 学习资源 -->
+            <section class="learning-section" id="resources">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div><h2 class="section-title">9. 学习资源</h2><p class="section-subtitle">EREV技术学习资料、参考书籍及实践建议</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📖 参考书籍</h3>
+                    <div class="card-content">
+                        <p><strong>核心技术类</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>书籍名称</th><th>作者/出版社</th><th>主要内容</th><th>适合读者</th></tr>
+                            <tr><td>《电动汽车工程手册》</td><td>中国汽车工程学会</td><td>电动汽车全技术体系</td><td>工程师、技术人员</td></tr>
+                            <tr><td>《混合动力电动汽车技术》</td><td>陈清泉等</td><td>混合动力原理与控制</td><td>研发人员、学生</td></tr>
+                            <tr><td>《汽车动力电池技术》</td><td>黄学杰等</td><td>电池材料、制造、测试</td><td>电池工程师</td></tr>
+                            <tr><td>《电机与拖动基础》</td><td>李发海等</td><td>电机原理与控制</td><td>电机工程师</td></tr>
+                            <tr><td>《内燃机原理》</td><td>周龙保等</td><td>发动机工作原理</td><td>发动机工程师</td></tr>
+                        </table>
+                        <p><strong>制造工艺类</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>书籍名称</th><th>作者/出版社</th><th>主要内容</th><th>适合读者</th></tr>
+                            <tr><td>《汽车制造工艺学》</td><td>王宝玺等</td><td>汽车制造全流程</td><td>制造工程师</td></tr>
+                            <tr><td>《IATF16949实战指南》</td><td>张智勇</td><td>质量管理体系应用</td><td>质量管理人员</td></tr>
+                            <tr><td>《精益生产实战手册》</td><td>刘胜军</td><td>精益生产工具方法</td><td>生产管理人员</td></tr>
+                            <tr><td>《六西格玛管理》</td><td>马逢时等</td><td>六西格玛方法论</td><td>质量改进人员</td></tr>
+                            <tr><td>《APQP实战应用》</td><td>张驰等</td><td>产品质量先期策划</td><td>项目管理人员</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🌐 在线资源</h3>
+                    <div class="card-content">
+                        <p><strong>技术网站与论坛</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">学术资源</div>
+                                <p>知网：CNKI学术论文</p>
+                                <p>万方：科技文献数据库</p>
+                                <p>IEEE Xplore：国际电气电子论文</p>
+                                <p>SAE Mobilus：汽车工程文献</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业网站</div>
+                                <p>汽车之家：车型数据、评测</p>
+                                <p>易车网：市场分析、资讯</p>
+                                <p>第一电动网：新能源汽车资讯</p>
+                                <p>高工锂电：电池行业资讯</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">技术论坛</div>
+                                <p>汽车工程师之家</p>
+                                <p>电动汽车资源网</p>
+                                <p>电池中国网论坛</p>
+                                <p>知乎汽车技术专栏</p>
+                            </div>
+                        </div>
+                        <p><strong>在线课程平台</strong>：</p>
+                        <ul>
+                            <li><strong>Coursera</strong>：电动汽车技术、电池管理系统</li>
+                            <li><strong>edX</strong>：新能源汽车、可持续交通</li>
+                            <li><strong>中国大学MOOC</strong>：汽车构造、制造工艺、质量管理</li>
+                            <li><strong>学堂在线</strong>：清华大学汽车工程课程</li>
+                            <li><strong>B站</strong>：技术科普视频、拆解分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎓 学习路径建议</h3>
+                    <div class="card-content">
+                        <p><strong>针对不同背景的学习者</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>学习者类型</th><th>学习重点</th><th>建议时长</th><th>实践建议</th><th>考核方式</th></tr>
+                            <tr><td>制造工程师</td><td>工艺、质量、设备</td><td>3-6个月</td><td>产线实习、工艺改进</td><td>项目报告、技能考核</td></tr>
+                            <tr><td>研发工程师</td><td>原理、设计、仿真</td><td>6-12个月</td><td>样机开发、测试验证</td><td>专利、论文、样机</td></tr>
+                            <tr><td>质量工程师</td><td>体系、工具、方法</td><td>2-4个月</td><td>质量改进项目</td><td>审核报告、改进成果</td></tr>
+                            <tr><td>管理人员</td><td>市场、战略、管理</td><td>1-3个月</td><td>市场调研、战略规划</td><td>商业计划书、分析报告</td></tr>
+                            <tr><td>学生/初学者</td><td>基础、概念、体系</td><td>6-12个月</td><td>课程学习、实验操作</td><td>考试、课程设计</td></tr>
+                        </table>
+                        <p><strong>实践学习建议</strong>：</p>
+                        <ol>
+                            <li><strong>理论学习</strong>：系统学习9个模块的基础知识</li>
+                            <li><strong>案例分析</strong>：研究典型EREV车型的技术方案</li>
+                            <li><strong>实验操作</strong>：参与电池测试、电机测试、整车测试</li>
+                            <li><strong>工厂参观</strong>：参观电池工厂、电机工厂、整车工厂</li>
+                            <li><strong>项目实践</strong>：参与实际的技术改进或产品开发项目</li>
+                            <li><strong>持续更新</strong>：关注技术发展，定期更新知识体系</li>
+                        </ol>
+                        <p><strong>能力提升路径</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">初级（0-1年）</div>
+                                <p>掌握基本概念</p>
+                                <p>了解技术体系</p>
+                                <p>熟悉工作流程</p>
+                                <p>完成基础培训</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">中级（1-3年）</div>
+                                <p>深入技术细节</p>
+                                <p>参与项目实践</p>
+                                <p>解决实际问题</p>
+                                <p>获得专业认证</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">高级（3-5年）</div>
+                                <p>技术方案设计</p>
+                                <p>团队管理能力</p>
+                                <p>创新技术开发</p>
+                                <p>行业影响力</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <div class="content-card" style="background: linear-gradient(135deg, var(--erev-dark) 0%, var(--erev-color) 100%); color: white;">
                 <h3 class="card-title" style="color: white;">🚀 深入学习提示</h3>
                 <div class="card-content">
@@ -212,7 +1038,7 @@
                 sidebarLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add                        link.classList.add('active');
+                        link.classList.add('active');
                     }
                 });
             });
