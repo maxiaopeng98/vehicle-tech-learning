@@ -306,6 +306,196 @@
             </section>
             
             <!-- 4. 核心组件 -->
+<!-- EREV 架构图组件 -->
+<div style="position: relative; width: 100%; height: 580px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(15, 23, 42, 0.5) 100%); border-radius: 16px; overflow: hidden; border: 2px solid var(--erev-color); margin: 30px 0;">
+    <!-- SVG 架构图 -->
+    <svg style="position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);" width="900" height="330">
+        <!-- 车身轮廓 -->
+        <path d="M 50,230 L 110,230 L 135,170 L 220,140 L 550,140 L 700,170 L 750,230 L 850,230 L 850,280 L 50,280 Z" 
+              fill="rgba(147, 51, 234, 0.08)" stroke="var(--erev-color)" stroke-width="3" stroke-linejoin="round"/>
+        
+        <!-- 车轮 -->
+        <circle cx="160" cy="280" r="55" fill="rgba(147, 51, 234, 0.15)" stroke="var(--erev-color)" stroke-width="4"/>
+        <circle cx="160" cy="280" r="28" fill="rgba(147, 51, 234, 0.25)"/>
+        <circle cx="740" cy="280" r="55" fill="rgba(147, 51, 234, 0.15)" stroke="var(--erev-color)" stroke-width="4"/>
+        <circle cx="740" cy="280" r="28" fill="rgba(147, 51, 234, 0.25)"/>
+        
+        <!-- 增程器 (发动机 + 发电机) -->
+        <rect x="100" y="185" width="85" height="65" rx="8" fill="url(#rangeGradient)" stroke="#f59e0b" stroke-width="2"/>
+        
+        <!-- 驱动电机 -->
+        <circle cx="350" cy="215" r="42" fill="url(#motorGradient)" stroke="var(--erev-light)" stroke-width="2"/>
+        
+        <!-- 电池包 (底盘) -->
+        <rect x="240" y="245" width="380" height="28" rx="6" fill="url(#batteryGradient)" stroke="var(--erev-color)" stroke-width="2"/>
+        
+        <!-- 电控系统 -->
+        <rect x="450" y="175" width="100" height="55" rx="10" fill="url(#ecuGradient)" stroke="var(--erev-light)" stroke-width="2"/>
+        
+        <!-- 油箱 -->
+        <rect x="650" y="245" width="110" height="35" rx="8" fill="url(#tankGradient)" stroke="#f59e0b" stroke-width="2"/>
+        
+        <!-- 充电口 -->
+        <circle cx="800" cy="190" r="30" fill="url(#chargeGradient)" stroke="#10b981" stroke-width="2"/>
+        
+        <!-- 减速器/传动 -->
+        <rect x="260" y="205" width="55" height="45" rx="6" fill="url(#transGradient)" stroke="var(--erev-light)" stroke-width="2"/>
+        
+        <!-- 能量流向 - 增程器发电 -->
+        <path d="M 185,217 L 255,217" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowOrange)" stroke-dasharray="5,5"/>
+        
+        <!-- 能量流向 - 电池放电 -->
+        <path d="M 430,245 L 430,225 L 395,225" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+        
+        <!-- 能量流向 - 增程器充电 -->
+        <path d="M 185,217 L 185,240 L 260,240" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+        
+        <!-- 充电箭头 -->
+        <path d="M 800,155 L 800,110 L 500,110 L 500,165" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+        
+        <!-- 渐变定义 -->
+        <defs>
+            <linearGradient id="rangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="motorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#9333ea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="batteryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#9333ea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="ecuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="tankGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="chargeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="transGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#9333ea;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+            </linearGradient>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+            </marker>
+            <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+            </marker>
+        </defs>
+    </svg>
+    
+    <!-- 组件标签 -->
+    <div style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); background: var(--erev-color); color: white; padding: 9px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.08)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showErevDetail('battery')">
+        🔋 动力电池 (40-50kWh)
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; left: 13%; background: #f59e0b; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showErevDetail('range')">
+        🔥 增程器 (发动机 + 发电机)
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; left: 36%; background: var(--erev-light); color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showErevDetail('motor')">
+        ⚡ 驱动电机
+    </div>
+    
+    <div style="position: absolute; bottom: 255px; left: 50%; transform: translateX(-50%); background: #a855f7; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.08)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showErevDetail('ecu')">
+        🎛️ 整车控制器
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; right: 18%; background: #d97706; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showErevDetail('tank')">
+        ⛽ 燃油箱
+    </div>
+    
+    <div style="position: absolute; top: 120px; right: 10%; width: 60px; height: 60px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);"
+         onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showErevDetail('charge')">
+        🔌
+    </div>
+    
+    <!-- 图例 -->
+    <div style="position: absolute; top: 25px; right: 25px; background: rgba(15, 23, 42, 0.95); padding: 20px; border-radius: 12px; border: 1px solid var(--erev-color); min-width: 220px;">
+        <div style="color: white; font-size: 14px; margin-bottom: 12px; font-weight: 600;">💡 工作模式</div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 纯电模式：电池 → 电机 → 车轮
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #f59e0b; margin-right: 8px;">➜</span> 增程模式：发动机 → 发电机 → 电池 → 电机
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 充电模式：充电桩 → 电池
+        </div>
+    </div>
+    
+    <!-- 提示 -->
+    <div style="position: absolute; bottom: 25px; left: 25px; color: var(--text-secondary); font-size: 12px; background: rgba(15, 23, 42, 0.8); padding: 11px 16px; border-radius: 8px;">
+        💡 点击组件查看技术参数
+    </div>
+</div>
+
+<!-- 详情面板 -->
+<div id="erev-detail-panel" style="margin: 20px 0; padding: 20px; background: rgba(147, 51, 234, 0.1); border-radius: 12px; border-left: 4px solid var(--erev-color); display: none;">
+    <h4 id="erev-detail-title" style="color: var(--erev-color); margin-bottom: 10px; font-size: 17px;"></h4>
+    <p id="erev-detail-content" style="color: var(--text-secondary); line-height: 1.7; font-size: 14px;"></p>
+</div>
+
+<script>
+function showErevDetail(component) {
+    const details = {
+        'battery': {
+            title: '🔋 动力电池系统',
+            content: '<strong>电池类型：</strong>三元锂电池<br><strong>电池容量：</strong>40-50 kWh (大电池方案)<br><strong>电压平台：</strong>350-400V<br><strong>纯电续航：</strong>150-250 km (NEDC)<br><strong>循环寿命：</strong>≥2000 次<br><strong>功能：</strong>主要能量来源，支持快充和能量回收'
+        },
+        'range': {
+            title: '🔥 增程器系统',
+            content: '<strong>组成：</strong>发动机 + 发电机一体化<br><strong>发动机类型：</strong>1.2-1.5L 阿特金森循环<br><strong>发电功率：</strong>60-100 kW<br><strong>热效率：</strong>≥40%<br><strong>特点：</strong>发动机不直接驱动车轮，仅在高效区间发电<br><strong>NVH：</strong>≤65 dB(A)'
+        },
+        'motor': {
+            title: '⚡ 驱动电机系统',
+            content: '<strong>电机类型：</strong>永磁同步电机 (PMSM)<br><strong>额定功率：</strong>150-200 kW<br><strong>峰值扭矩：</strong>300-400 N·m<br><strong>最高效率：</strong>≥96%<br><strong>最高转速：</strong>12000-16000 rpm<br><strong>功能：</strong>唯一驱动车轮的动力源'
+        },
+        'ecu': {
+            title: '🎛️ 整车控制器 (VCU)',
+            content: '<strong>核心功能：</strong>能量管理、SOC 控制、增程器启停<br><strong>控制策略：</strong>电池优先，电量不足时启动增程器<br><strong>工作模式：</strong>纯电/增程/充电/能量回收<br><strong>智能控制：</strong>基于导航预测、路况自适应'
+        },
+        'tank': {
+            title: '⛽ 燃油系统',
+            content: '<strong>油箱容量：</strong>50-65 L<br><strong>燃油标号：</strong>92# 汽油<br><strong>综合续航：</strong>800-1200 km (满油满电)<br><strong>馈电油耗：</strong>6-8 L/100km<br><strong>功能：</strong>为增程器提供燃油，延长续航里程'
+        },
+        'charge': {
+            title: '🔌 充电系统',
+            content: '<strong>交流慢充：</strong>6-11 kW (220V/32A), 充满约 5-8 小时<br><strong>直流快充：</strong>60-120 kW, 30-80% 约 30 分钟<br><strong>充电接口：</strong>国标 GB/T<br><strong>车载充电机 (OBC)：</strong>6-11 kW<br><strong>功能：</strong>外接充电、预约充电、对外放电'
+        }
+    };
+    
+    const panel = document.getElementById('erev-detail-panel');
+    const title = document.getElementById('erev-detail-title');
+    const content = document.getElementById('erev-detail-content');
+    
+    if (details[component]) {
+        title.innerHTML = details[component].title;
+        content.innerHTML = details[component].content;
+        panel.style.display = 'block';
+        panel.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+}
+</script>
             <section class="learning-section" id="components">
                 <div class="section-header">
                     <div class="section-icon">🔧</div>
