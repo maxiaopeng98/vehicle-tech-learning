@@ -531,4 +531,676 @@
             <!-- 2. 定义与分类 -->
             <section class="learning-section" id="definition">
                 <div class="section-header">
-                    <div class="section
+                    <div class="section-icon">📝</div>
+                    <div><h2 class="section-title">2. 定义与分类</h2><p class="section-subtitle">PHEV 的准确定义、技术分类及标准规范</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔍 技术定义</h3>
+                    <div class="card-content">
+                        <p><strong>插电混动汽车 (Plug-in Hybrid Electric Vehicle, PHEV)</strong> 是一种兼具纯电动和燃油车特点的混合动力汽车：</p>
+                        <ul>
+                            <li><strong>可外接充电</strong>：可通过充电桩为动力电池充电</li>
+                            <li><strong>双动力系统</strong>：发动机和电机可独立或协同驱动车辆</li>
+                            <li><strong>多种工作模式</strong>：纯电、混动、燃油模式智能切换</li>
+                            <li><strong>长纯电续航</strong>：纯电续驶里程≥50km（国标要求）</li>
+                            <li><strong>低油耗</strong>：综合油耗显著低于传统燃油车</li>
+                        </ul>
+                        <p><strong>国家标准定义 (GB/T 19596-2017)</strong>：具有可外接充电功能，且最大电功率比≥30% 的混合动力汽车。</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 技术分类</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>分类维度</th><th>类型</th><th>特点</th><th>代表车型</th></tr>
+                            <tr><td rowspan="3">混动结构</td><td>串联式 PHEV</td><td>发动机发电，电机驱动</td><td>理想 ONE（增程式）</td></tr>
+                            <tr><td>并联式 PHEV</td><td>发动机和电机都可驱动</td><td>比亚迪 DM-i</td></tr>
+                            <tr><td>混联式 PHEV</td><td>功率分流，效率最优</td><td>丰田 THS、本田 i-MMD</td></tr>
+                            <tr><td rowspan="2">电池容量</td><td>大电池型 (20-40kWh)</td><td>纯电续航 100-200km</td><td>比亚迪汉 DM-i</td></tr>
+                            <tr><td>小电池型 (10-20kWh)</td><td>纯电续航 50-100km</td><td>丰田 RAV4 PHEV</td></tr>
+                            <tr><td rowspan="2">发动机类型</td><td>涡轮增压</td><td>动力强，效率高</td><td>大众 GTE 系列</td></tr>
+                            <tr><td>自然吸气</td><td>可靠性高，成本低</td><td>比亚迪 DM-i</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📋 技术标准与规范</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">GB/T 标准</div>
+                                <p>GB/T 19596-2017 电动汽车术语</p>
+                                <p>GB/T 32960-2016 远程服务与管理</p>
+                                <p>GB/T 18488-2015 驱动电机系统</p>
+                                <p>GB/T 31467-2015 动力蓄电池安全</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">ISO 标准</div>
+                                <p>ISO 26262 功能安全</p>
+                                <p>ISO 19453 电动道路车辆安全</p>
+                                <p>ISO 15118 车辆到电网通信</p>
+                                <p>ISO 14001 环境管理体系</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业规范</div>
+                                <p>SAE J1772 充电接口标准</p>
+                                <p>IEC 61851 充电系统标准</p>
+                                <p>UN ECE R100 安全法规</p>
+                                <p>WLTP 测试规程</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 3. 工作原理 -->
+            <section class="learning-section" id="principle">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <div><h2 class="section-title">3. 工作原理</h2><p class="section-subtitle">PHEV 的系统架构、工作模式及控制策略</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔄 系统架构</h3>
+                    <div class="card-content">
+                        <p>PHEV 系统架构主要包括以下核心组件：</p>
+                        <ul>
+                            <li><strong>发动机系统</strong>：内燃机，提供机械能或发电</li>
+                            <li><strong>电机系统</strong>：驱动电机，将电能转换为机械能</li>
+                            <li><strong>动力电池系统</strong>：存储电能，为电机供电</li>
+                            <li><strong>电控系统</strong>：电机控制器、电池管理系统</li>
+                            <li><strong>整车控制器 (VCU)</strong>：协调各系统工作</li>
+                            <li><strong>变速箱</strong>：单档/多档变速机构</li>
+                        </ul>
+                        <p><strong>典型 PHEV 系统架构图</strong>：</p>
+                        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                            <p style="text-align: center; color: var(--phev-color); font-weight: 600;">并联式 PHEV 能量流动示意图</p>
+                            <p style="text-align: center; margin: 10px 0;">
+                                ⛽ 燃油 → 🔥 发动机 → 🛞 车轮<br>
+                                🔋 电池 → ⚡ 电机 → 🛞 车轮<br>
+                                🔌 充电桩 → 🔋 电池（外接充电）
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 工作模式</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>工作模式</th><th>动力来源</th><th>电池 SOC</th><th>适用场景</th><th>油耗</th></tr>
+                            <tr><td>纯电模式 (EV)</td><td>仅电机</td><td>>20%</td><td>市区短途</td><td>0 L/100km</td></tr>
+                            <tr><td>串联模式</td><td>发动机发电→电机驱动</td><td>低电量</td><td>市区拥堵</td><td>4-6 L/100km</td></tr>
+                            <tr><td>并联模式</td><td>发动机 + 电机协同</td><td>任何状态</td><td>急加速/高速</td><td>5-7 L/100km</td></tr>
+                            <tr><td>发动机直驱</td><td>仅发动机</td><td>高电量/高速</td><td>高速巡航</td><td>4-5 L/100km</td></tr>
+                            <tr><td>能量回收</td><td>电机发电→电池</td><td>任何状态</td><td>减速/下坡</td><td>回收 60-70%</td></tr>
+                            <tr><td>充电模式</td><td>发动机发电→电池</td><td>强制充电</td><td>长途前准备</td><td>6-8 L/100km</td></tr>
+                        </table>
+                        <p><strong>智能控制策略</strong>：</p>
+                        <ul>
+                            <li><strong>SOC 平衡控制</strong>：保持电池电量在合理区间</li>
+                            <li><strong>基于导航的预测控制</strong>：根据路线提前调整模式</li>
+                            <li><strong>基于路况的自适应控制</strong>：根据拥堵情况优化策略</li>
+                            <li><strong>基于成本的优化控制</strong>：根据电价/油价选择最优模式</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 关键技术参数</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电池系统</div>
+                                <p>容量：10-40 kWh</p>
+                                <p>电压：300-400V</p>
+                                <p>能量密度：160-200 Wh/kg</p>
+                                <p>纯电续航：50-200 km</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">动力系统</div>
+                                <p>发动机功率：80-150 kW</p>
+                                <p>电机功率：100-200 kW</p>
+                                <p>系统综合功率：200-350 kW</p>
+                                <p>百公里加速：5-8 秒</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">整车性能</div>
+                                <p>综合续航：800-1200 km</p>
+                                <p>综合油耗：1-2 L/100km（馈电 5-7L）</p>
+                                <p>百公里电耗：12-18 kWh</p>
+                                <p>排放：国六 b 标准</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 4. 核心组件 -->
+            <section class="learning-section" id="components">
+                <div class="section-header">
+                    <div class="section-icon">🔧</div>
+                    <div><h2 class="section-title">4. 核心组件</h2><p class="section-subtitle">PHEV 关键部件的技术参数、功能要求及选型原则</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 动力电池系统</h3>
+                    <div class="card-content">
+                        <p><strong>技术要求</strong>：</p>
+                        <ul>
+                            <li><strong>高功率密度</strong>：≥1500 W/kg，满足加速和回收需求</li>
+                            <li><strong>长循环寿命</strong>：≥3000 次，适应频繁充放电</li>
+                            <li><strong>高安全性</strong>：通过针刺、挤压、过充等测试</li>
+                            <li><strong>宽温度适应性</strong>：-30℃~55℃正常工作</li>
+                            <li><strong>快速充电</strong>：支持 3-6kW 交流充电</li>
+                        </ul>
+                        <p><strong>电池类型对比</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>电池类型</th><th>能量密度</th><th>循环寿命</th><th>成本</th><th>安全性</th><th>应用</th></tr>
+                            <tr><td>三元锂 (NCM)</td><td>高 (200-280)</td><td>中 (1500-2000)</td><td>高</td><td>中</td><td>高端 PHEV</td></tr>
+                            <tr><td>磷酸铁锂 (LFP)</td><td>中 (160-200)</td><td>高 (3000+)</td><td>低</td><td>高</td><td>主流 PHEV</td></tr>
+                            <tr><td>刀片电池</td><td>中高 (180-220)</td><td>高 (3000+)</td><td>中</td><td>很高</td><td>比亚迪 DM-i</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 驱动电机系统</h3>
+                    <div class="card-content">
+                        <p><strong>电机类型选择</strong>：</p>
+                        <ul>
+                            <li><strong>永磁同步电机 (PMSM)</strong>：效率高、功率密度高，主流选择</li>
+                            <li><strong>交流异步电机 (IM)</strong>：成本低、高速性能好</li>
+                            <li><strong>开关磁阻电机 (SRM)</strong>：结构简单、成本低，但噪音大</li>
+                        </ul>
+                        <p><strong>PHEV 电机特点</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">驱动电机</div>
+                                <p>功率：100-200 kW</p>
+                                <p>扭矩：250-400 N·m</p>
+                                <p>效率：≥96%</p>
+                                <p>冷却方式：水冷</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">发电机</div>
+                                <p>功率：50-100 kW</p>
+                                <p>转速：3000-6000 rpm</p>
+                                <p>效率：≥95%</p>
+                                <p>控制方式：矢量控制</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电控系统</div>
+                                <p>IGBT/SiC 模块</p>
+                                <p>开关频率：10-20 kHz</p>
+                                <p>防护等级：IP67</p>
+                                <p>冷却方式：水冷</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 发动机系统</h3>
+                    <div class="card-content">
+                        <p><strong>PHEV 专用发动机特点</strong>：</p>
+                        <ul>
+                            <li><strong>高热效率</strong>：≥43%，降低油耗</li>
+                            <li><strong>阿特金森循环</strong>：提高热效率，牺牲部分功率</li>
+                            <li><strong>取消皮带轮系</strong>：由电机直接驱动附件</li>
+                            <li><strong>快速暖机</strong>：降低冷启动排放和油耗</li>
+                            <li><strong>低摩擦设计</strong>：降低机械损失</li>
+                        </ul>
+                        <p><strong>典型 PHEV 发动机参数</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>技术参数</th><th>数值范围</th><th>说明</th></tr>
+                            <tr><td>排量</td><td>1.0-2.0L</td><td>小排量涡轮增压为主</td></tr>
+                            <tr><td>最大功率</td><td>80-150 kW</td><td>与电机协同工作</td></tr>
+                            <tr><td>最大扭矩</td><td>150-300 N·m</td><td>低转速高扭矩</td></tr>
+                            <tr><td>热效率</td><td>40-45%</td><td>混动专用发动机</td></tr>
+                            <tr><td>压缩比</td><td>13-16:1</td><td>高压缩比提高效率</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔌 混动专用变速箱</h3>
+                    <div class="card-content">
+                        <p><strong>PHEV 变速箱类型</strong>：</p>
+                        <ul>
+                            <li><strong>单档减速器</strong>：结构简单，成本低（比亚迪 DM-i）</li>
+                            <li><strong>多档 DHT</strong>：2-3 档，兼顾动力和油耗（长城柠檬 DHT）</li>
+                            <li><strong>E-CVT</strong>：功率分流，平顺性好（丰田 THS）</li>
+                            <li><strong>双离合 DCT</strong>：传动效率高，换挡快（大众 GTE）</li>
+                        </ul>
+                        <p><strong>变速箱技术要求</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">传动效率</div>
+                                <p>≥95%（单档）</p>
+                                <p>≥93%（多档）</p>
+                                <p>换挡时间：<200ms</p>
+                                <p>噪音：≤65 dB</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">控制要求</div>
+                                <p>模式切换平顺</p>
+                                <p>扭矩响应快</p>
+                                <p>故障保护</p>
+                                <p>自适应学习</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 5. 材料科学 -->
+            <section class="learning-section" id="materials">
+                <div class="section-header">
+                    <div class="section-icon">🧪</div>
+                    <div><h2 class="section-title">5. 材料科学</h2><p class="section-subtitle">PHEV 关键材料的性能要求、选择标准及发展趋势</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 电池材料</h3>
+                    <div class="card-content">
+                        <p><strong>正极材料</strong>：</p>
+                        <ul>
+                            <li><strong>磷酸铁锂 (LFP)</strong>：安全性好，循环寿命长，成本低</li>
+                            <li><strong>三元材料 (NCM)</strong>：能量密度高，但热稳定性较差</li>
+                            <li><strong>锰酸锂 (LMO)</strong>：成本低，安全性好，但循环寿命短</li>
+                        </ul>
+                        <p><strong>负极材料</strong>：</p>
+                        <ul>
+                            <li><strong>石墨</strong>：技术成熟，成本低，容量 372 mAh/g</li>
+                            <li><strong>硅碳复合</strong>：容量高（4200 mAh/g），但体积膨胀</li>
+                        </ul>
+                        <p><strong>电解液与隔膜</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电解液</div>
+                                <p>锂盐：LiPF₆</p>
+                                <p>溶剂：EC、DMC、EMC</p>
+                                <p>添加剂：VC、FEC</p>
+                                <p>工作温度：-30~60℃</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">隔膜</div>
+                                <p>材质：PE、PP</p>
+                                <p>厚度：12-25 μm</p>
+                                <p>孔隙率：40-60%</p>
+                                <p>热关闭：130-150℃</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电机与电控材料</h3>
+                    <div class="card-content">
+                        <p><strong>永磁材料</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>材料类型</th><th>剩磁 Br (T)</th><th>矫顽力 Hc (kA/m)</th><th>工作温度</th><th>成本</th></tr>
+                            <tr><td>钕铁硼 (NdFeB)</td><td>1.0-1.4</td><td>800-2000</td><td>≤180℃</td><td>高</td></tr>
+                            <tr><td>铁氧体</td><td>0.2-0.4</td><td>200-400</td><td>≤250℃</td><td>低</td></tr>
+                            <tr><td>钐钴 (SmCo)</td><td>0.8-1.1</td><td>600-2000</td><td>≤350℃</td><td>很高</td></tr>
+                        </table>
+                        <p><strong>电控材料</strong>：</p>
+                        <ul>
+                            <li><strong>IGBT</strong>：成熟可靠，成本低，开关频率 10-20kHz</li>
+                            <li><strong>SiC</strong>：效率高，耐高温，成本高，未来趋势</li>
+                            <li><strong>铜母线</strong>：低电阻，高导热，轻量化设计</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 发动机与轻量化材料</h3>
+                    <div class="card-content">
+                        <p><strong>发动机材料</strong>：</p>
+                        <ul>
+                            <li><strong>铝合金缸体</strong>：轻量化，散热好</li>
+                            <li><strong>铸铁缸套</strong>：耐磨，成本低</li>
+                            <li><strong>锻钢曲轴</strong>：强度高，耐疲劳</li>
+                        </ul>
+                        <p><strong>轻量化材料</strong>：</p>
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">高强度钢</div>
+                                <p>980-1500 MPa</p>
+                                <p>车身结构件</p>
+                                <p>成本适中</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">铝合金</div>
+                                <p>5 系、6 系、7 系</p>
+                                <p>覆盖件、副车架</p>
+                                <p>密度 2.7 g/cm³</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">复合材料</div>
+                                <p>CFRP、GFRP</p>
+                                <p>内饰、外饰件</p>
+                                <p>轻量化效果好</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 6. 制造工艺 -->
+            <section class="learning-section" id="manufacturing">
+                <div class="section-header">
+                    <div class="section-icon">🏭</div>
+                    <div><h2 class="section-title">6. 制造工艺</h2><p class="section-subtitle">PHEV 关键部件的生产工艺、装配流程及质量控制要点</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 电池包制造工艺</h3>
+                    <div class="card-content">
+                        <p><strong>电芯制造流程</strong>：</p>
+                        <ol>
+                            <li><strong>电极制备</strong>：混料→涂布→辊压→分切</li>
+                            <li><strong>装配</strong>：卷绕/叠片→入壳→注液→封口</li>
+                            <li><strong>化成</strong>：首次充电→老化→分容</li>
+                            <li><strong>检测</strong>：OCV、内阻、自放电测试</li>
+                        </ol>
+                        <p><strong>电池包组装流程</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工序</th><th>工艺要点</th><th>设备要求</th><th>质量控制</th></tr>
+                            <tr><td>模组装配</td><td>电芯堆叠、Busbar 焊接</td><td>自动堆叠机、激光焊</td><td>焊接强度、绝缘</td></tr>
+                            <tr><td>热管理集成</td><td>冷却板安装、管路连接</td><td>自动涂胶机、拧紧机</td><td>密封性、导热性</td></tr>
+                            <tr><td>BMS 安装</td><td>线束连接、传感器安装</td><td>自动压接、视觉检测</td><td>信号精度</td></tr>
+                            <tr><td>壳体封装</td><td>上下盖合装、密封测试</td><td>自动拧紧、气密检测</td><td>IP67 防护</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电驱系统装配工艺</h3>
+                    <div class="card-content">
+                        <p><strong>电机定子制造</strong>：</p>
+                        <ul>
+                            <li><strong>冲压</strong>：高速冲床，模具精度±0.01mm</li>
+                            <li><strong>叠压</strong>：自动叠铆，叠压系数≥0.97</li>
+                            <li><strong>绕组</strong>：发卡绕组/传统绕组</li>
+                            <li><strong>浸渍</strong>：VPI 真空压力浸渍</li>
+                        </ul>
+                        <p><strong>电驱总成装配</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工序</th><th>工艺要点</th><th>质量控制</th></tr>
+                            <tr><td>电机装配</td><td>转子压装、轴承安装</td><td>动平衡、轴伸跳动</td></tr>
+                            <tr><td>电控装配</td><td>IGBT 安装、线束连接</td><td>绝缘、耐压测试</td></tr>
+                            <tr><td>总成合装</td><td>电机 + 电控+减速器</td><td>密封性、功能测试</td></tr>
+                            <tr><td>EOL 测试</td><td>性能测试、NVH 测试</td><td>效率曲线、噪音</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔥 发动机与总装工艺</h3>
+                    <div class="card-content">
+                        <p><strong>发动机装配线</strong>：</p>
+                        <ol>
+                            <li><strong>缸体装配</strong>：主轴瓦→曲轴→活塞连杆</li>
+                            <li><strong>缸盖装配</strong>：气门→凸轮轴→摇臂</li>
+                            <li><strong>总成装配</strong>：缸盖合装→正时→附件</li>
+                            <li><strong>测试</strong>：冷试→热试→排放测试</li>
+                        </ol>
+                        <p><strong>整车总装工艺</strong>：</p>
+                        <ul>
+                            <li><strong>底盘合装</strong>：电池包、电机、发动机同步安装</li>
+                            <li><strong>高压系统安装</strong>：橙色线束、安全标识</li>
+                            <li><strong>燃油系统安装</strong>：油箱、油管、碳罐</li>
+                            <li><strong>EOL 测试</strong>：功能测试、路试、淋雨测试</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 7. 质量管理 -->
+            <section class="learning-section" id="quality">
+                <div class="section-header">
+                    <div class="section-icon">✅</div>
+                    <div><h2 class="section-title">7. 质量管理</h2><p class="section-subtitle">PHEV 制造过程的质量控制体系、标准要求及改进方法</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📋 质量管理体系</h3>
+                    <div class="card-content">
+                        <p><strong>IATF 16949 汽车行业质量管理体系</strong>：</p>
+                        <ul>
+                            <li><strong>过程方法</strong>：识别、管理、改进关键过程</li>
+                            <li><strong>风险思维</strong>：预防为主，识别和控制风险</li>
+                            <li><strong>顾客导向</strong>：以顾客要求为关注焦点</li>
+                            <li><strong>持续改进</strong>：PDCA 循环</li>
+                        </ul>
+                        <p><strong>五大核心工具</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>工具</th><th>全称</th><th>应用阶段</th><th>主要输出</th></tr>
+                            <tr><td>APQP</td><td>产品质量先期策划</td><td>产品开发</td><td>控制计划、FMEA</td></tr>
+                            <tr><td>PPAP</td><td>生产件批准程序</td><td>批量生产前</td><td>PSW、尺寸报告</td></tr>
+                            <tr><td>FMEA</td><td>失效模式与影响分析</td><td>设计/过程</td><td>风险优先数 RPN</td></tr>
+                            <tr><td>SPC</td><td>统计过程控制</td><td>生产过程</td><td>控制图、Cpk</td></tr>
+                            <tr><td>MSA</td><td>测量系统分析</td><td>测量系统</td><td>GR&R、偏倚</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔍 关键特性控制</h3>
+                    <div class="card-content">
+                        <p><strong>电池系统关键特性</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>特性</th><th>控制方法</th><th>公差要求</th><th>测量工具</th></tr>
+                            <tr><td>电压一致性</td><td>SPC 控制</td><td>±50 mV</td><td>电池测试仪</td></tr>
+                            <tr><td>内阻一致性</td><td>100% 测试</td><td>±10%</td><td>内阻测试仪</td></tr>
+                            <tr><td>焊接强度</td><td>破坏性测试</td><td>≥母材 80%</td><td>拉力测试机</td></tr>
+                            <tr><td>气密性</td><td>100% 测试</td><td>≤1 Pa·L/s</td><td>气密测试仪</td></tr>
+                            <tr><td>绝缘电阻</td><td>100% 测试</td><td>≥100 MΩ</td><td>绝缘测试仪</td></tr>
+                        </table>
+                        <p><strong>电驱系统关键特性</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>特性</th><th>控制方法</th><th>公差要求</th><th>测量工具</th></tr>
+                            <tr><td>绕组电阻</td><td>SPC 控制</td><td>±5%</td><td>微欧计</td></tr>
+                            <tr><td>绝缘电阻</td><td>100% 测试</td><td>≥500 MΩ</td><td>绝缘测试仪</td></tr>
+                            <tr><td>动平衡</td><td>100% 测试</td><td>G2.5 级</td><td>动平衡机</td></tr>
+                            <tr><td>效率</td><td>抽样测试</td><td>≥96%</td><td>测功机</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 过程能力分析</h3>
+                    <div class="card-content">
+                        <p><strong>过程能力指数要求</strong>：</p>
+                        <ul>
+                            <li><strong>Cpk ≥ 1.33</strong>：关键特性，过程稳定受控</li>
+                            <li><strong>Cpk ≥ 1.67</strong>：重要特性，过程能力充足</li>
+                            <li><strong>Ppk ≥ 1.67</strong>：初始过程能力</li>
+                        </ul>
+                        <p><strong>常见质量问题及对策</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>问题</th><th>根本原因</th><th>对策</th><th>防错措施</th></tr>
+                            <tr><td>电池电压不一致</td><td>电芯分选不严</td><td>加强分选</td><td>自动分选机</td></tr>
+                            <tr><td>焊接虚焊</td><td>参数不稳定</td><td>调整参数</td><td>焊接监控系统</td></tr>
+                            <tr><td>密封泄漏</td><td>涂胶不均</td><td>优化轨迹</td><td>视觉检测</td></tr>
+                            <tr><td>绝缘不良</td><td>材料污染</td><td>清洁处理</td><td>自动清洁</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 8. 市场应用 -->
+            <section class="learning-section" id="application">
+                <div class="section-header">
+                    <div class="section-icon">📈</div>
+                    <div><h2 class="section-title">8. 市场应用</h2><p class="section-subtitle">PHEV 市场现状、发展趋势及应用场景分析</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🌍 全球市场现状</h3>
+                    <div class="card-content">
+                        <p><strong>市场规模（2025 年）</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>地区</th><th>销量（万辆）</th><th>市场份额</th><th>年增长率</th><th>主要品牌</th></tr>
+                            <tr><td>中国</td><td>250</td><td>60%</td><td>40%</td><td>比亚迪、理想、吉利</td></tr>
+                            <tr><td>欧洲</td><td>120</td><td>30%</td><td>25%</td><td>大众、宝马、奔驰</td></tr>
+                            <tr><td>北美</td><td>30</td><td>7%</td><td>20%</td><td>丰田、福特、通用</td></tr>
+                            <tr><td>其他</td><td>12</td><td>3%</td><td>15%</td><td>现代、起亚</td></tr>
+                            <tr><td>全球合计</td><td>412</td><td>100%</td><td>35%</td><td>-</td></tr>
+                        </table>
+                        <p><strong>中国市场特点</strong>：</p>
+                        <ul>
+                            <li><strong>政策支持</strong>：新能源补贴、免购置税、不限行</li>
+                            <li><strong>用户需求</strong>：无里程焦虑、低油耗、绿牌</li>
+                            <li><strong>产品定位</strong>：主流家用、性价比优先</li>
+                            <li><strong>技术路线</strong>：比亚迪 DM-i 引领，多家跟进</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🚀 技术发展趋势</h3>
+                    <div class="card-content">
+                        <p><strong>2025-2030 年技术趋势</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>技术领域</th><th>当前水平</th><th>2025 目标</th><th>2030 展望</th></tr>
+                            <tr><td>纯电续航</td><td>50-100 km</td><td>100-150 km</td><td>150-200 km</td></tr>
+                            <tr><td>馈电油耗</td><td>4-6 L/100km</td><td>3-4 L/100km</td><td>2-3 L/100km</td></tr>
+                            <tr><td>系统效率</td><td>85-90%</td><td>90-93%</td><td>93-95%</td></tr>
+                            <tr><td>电池成本</td><td>$130/kWh</td><td>$100/kWh</td><td>$70/kWh</td></tr>
+                        </table>
+                        <p><strong>关键技术突破</strong>：</p>
+                        <ul>
+                            <li><strong>高效发动机</strong>：热效率 45%+</li>
+                            <li><strong>多档 DHT</strong>：2-3 档混动专用变速箱</li>
+                            <li><strong>SiC 电控</strong>：效率提升 3-5%</li>
+                            <li><strong>智能能量管理</strong>：AI 预测控制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 应用场景</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">家庭首购</div>
+                                <p>需求：一辆车满足所有场景</p>
+                                <p>优势：可电可油，无焦虑</p>
+                                <p>车型：紧凑型/中型 SUV</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">限牌城市</div>
+                                <p>需求：绿牌、不限行</p>
+                                <p>优势：新能源政策优惠</p>
+                                <p>车型：各价位段</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">长途通勤</div>
+                                <p>需求：日常纯电，长途用油</p>
+                                <p>优势：低成本 + 无焦虑</p>
+                                <p>车型：大电池 PHEV</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 9. 学习资源 -->
+            <section class="learning-section" id="resources">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div><h2 class="section-title">9. 学习资源</h2><p class="section-subtitle">PHEV 技术学习资料、参考书籍及实践建议</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📖 参考书籍</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>书籍名称</th><th>作者/出版社</th><th>主要内容</th></tr>
+                            <tr><td>《混合动力电动汽车技术》</td><td>陈清泉等</td><td>混动原理与控制</td></tr>
+                            <tr><td>《电动汽车工程手册》</td><td>中国汽车工程学会</td><td>全技术体系</td></tr>
+                            <tr><td>《汽车动力电池技术》</td><td>黄学杰等</td><td>电池材料、制造</td></tr>
+                            <tr><td>《汽车制造工艺学》</td><td>王宝玺等</td><td>制造全流程</td></tr>
+                            <tr><td>《IATF16949 实战指南》</td><td>张智勇</td><td>质量管理体系</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🌐 在线资源</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">学术资源</div>
+                                <p>知网、IEEE、SAE</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业网站</div>
+                                <p>汽车之家、第一电动</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">在线课程</div>
+                                <p>Coursera、中国大学 MOOC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎓 学习路径</h3>
+                    <div class="card-content">
+                        <ol>
+                            <li><strong>基础学习</strong>：9 个模块系统学习</li>
+                            <li><strong>案例分析</strong>：研究典型 PHEV 车型</li>
+                            <li><strong>实践操作</strong>：参与测试、拆解</li>
+                            <li><strong>持续更新</strong>：关注技术发展</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="content-card" style="background: linear-gradient(135deg, var(--phev-dark) 0%, var(--phev-color) 100%); color: white;">
+                <h3 class="card-title" style="color: white;">🚀 深入学习提示</h3>
+                <div class="card-content">
+                    <p>PHEV 技术兼具纯电和燃油优势，是过渡期的重要技术路线。建议重点关注：</p>
+                    <ol style="padding-left: 20px; margin: 15px 0;">
+                        <li>双动力系统协同控制</li>
+                        <li>能量管理策略优化</li>
+                        <li>混动专用变速箱 (DHT)</li>
+                        <li>馈电油耗控制</li>
+                    </ol>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="index.html" style="background: white; color: var(--phev-color); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">返回首页</a>
+                        <a href="bev-deep-learning.html" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">学习 BEV 技术</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">返回首页</a>
+            <a href="quality-management.html" class="footer-link">质量管理体系</a>
+            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub 仓库</a>
+        </div>
+        <div class="copyright">© 2026 车辆技术学习平台 | PHEV 深度学习模块</div>
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">基于实际制造经验与质量管理体系构建</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.learning-section');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    if (scrollY >= (section.offsetTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
