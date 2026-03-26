@@ -1132,6 +1132,151 @@
             </section>
 
             <!-- 4. 核心组件 -->
+<!-- BEV 架构图组件 -->
+<div style="position: relative; width: 100%; height: 600px; background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(15, 23, 42, 0.5) 100%); border-radius: 16px; overflow: hidden; border: 2px solid var(--bev-color); margin: 30px 0;">
+    <!-- 车身轮廓 -->
+    <svg style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);" width="800" height="300">
+        <!-- 车身 -->
+        <path d="M 50,200 L 100,200 L 120,150 L 200,120 L 500,120 L 650,150 L 700,200 L 750,200 L 750,250 L 50,250 Z" 
+              fill="rgba(37, 99, 235, 0.1)" stroke="var(--bev-color)" stroke-width="3" stroke-linejoin="round"/>
+        
+        <!-- 车轮 -->
+        <circle cx="150" cy="250" r="50" fill="rgba(37, 99, 235, 0.2)" stroke="var(--bev-color)" stroke-width="4"/>
+        <circle cx="150" cy="250" r="25" fill="rgba(37, 99, 235, 0.3)"/>
+        <circle cx="650" cy="250" r="50" fill="rgba(37, 99, 235, 0.2)" stroke="var(--bev-color)" stroke-width="4"/>
+        <circle cx="650" cy="250" r="25" fill="rgba(37, 99, 235, 0.3)"/>
+        
+        <!-- 电池包 (底盘) -->
+        <rect x="200" y="220" width="400" height="25" rx="5" fill="url(#batteryGradient)" stroke="var(--bev-color)" stroke-width="2"/>
+        
+        <!-- 前电机 -->
+        <circle cx="200" cy="180" r="35" fill="url(#motorGradient)" stroke="var(--bev-light)" stroke-width="2"/>
+        
+        <!-- 电控 -->
+        <rect x="350" y="160" width="100" height="50" rx="8" fill="url(#ecuGradient)" stroke="var(--bev-light)" stroke-width="2"/>
+        
+        <!-- 充电口 -->
+        <circle cx="700" cy="170" r="25" fill="url(#chargeGradient)" stroke="#10b981" stroke-width="2"/>
+        
+        <!-- 能量流向箭头 (放电) -->
+        <path d="M 400,220 L 400,200 L 380,200" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M 400,220 L 400,200 L 220,200" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+        <path d="M 400,220 L 400,200 L 620,200" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+        
+        <!-- 充电箭头 -->
+        <path d="M 700,140 L 700,100 L 450,100 L 450,150" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowheadGreen)"/>
+        
+        <!-- 渐变定义 -->
+        <defs>
+            <linearGradient id="batteryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="motorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="ecuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="chargeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+            </linearGradient>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+            </marker>
+            <marker id="arrowheadGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+            </marker>
+        </defs>
+    </svg>
+    
+    <!-- 组件标签 (可点击) -->
+    <div style="position: absolute; bottom: 95px; left: 50%; transform: translateX(-50%); background: var(--bev-color); color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.05)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showBevDetail('battery')">
+        🔋 动力电池包
+    </div>
+    
+    <div style="position: absolute; bottom: 140px; left: 22%; background: var(--bev-light); color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showBevDetail('motor')">
+        ⚡ 驱动电机
+    </div>
+    
+    <div style="position: absolute; bottom: 220px; left: 50%; transform: translateX(-50%); background: #60a5fa; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.05)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showBevDetail('ecu')">
+        🎛️ VCU 电控
+    </div>
+    
+    <div style="position: absolute; top: 120px; right: 15%; width: 50px; height: 50px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);"
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showBevDetail('charge')">
+        🔌
+    </div>
+    
+    <!-- 图例 -->
+    <div style="position: absolute; top: 20px; right: 20px; background: rgba(15, 23, 42, 0.95); padding: 20px; border-radius: 12px; border: 1px solid var(--bev-color); min-width: 200px;">
+        <div style="color: white; font-size: 14px; margin-bottom: 12px; font-weight: 600;">💡 能量流向</div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 放电：电池 → 电机 → 车轮
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 充电：充电桩 → 电池
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 回收：刹车 → 电池
+        </div>
+    </div>
+    
+    <!-- 交互提示 -->
+    <div style="position: absolute; bottom: 20px; left: 20px; color: var(--text-secondary); font-size: 12px; background: rgba(15, 23, 42, 0.8); padding: 10px 15px; border-radius: 8px;">
+        💡 点击组件查看详细信息
+    </div>
+</div>
+
+<!-- 组件详情显示区域 -->
+<div id="bev-detail-panel" style="margin: 20px 0; padding: 20px; background: rgba(37, 99, 235, 0.1); border-radius: 12px; border-left: 4px solid var(--bev-color); display: none;">
+    <h4 id="bev-detail-title" style="color: var(--bev-color); margin-bottom: 10px; font-size: 16px;"></h4>
+    <p id="bev-detail-content" style="color: var(--text-secondary); line-height: 1.7; font-size: 14px;"></p>
+</div>
+
+<script>
+function showBevDetail(component) {
+    const details = {
+        'battery': {
+            title: '🔋 动力电池系统',
+            content: '<strong>电压平台：</strong>400V/800V<br><strong>电池容量：</strong>60-100 kWh<br><strong>能量密度：</strong>180-220 Wh/kg (三元锂) 或 160-200 Wh/kg (磷酸铁锂)<br><strong>循环寿命：</strong>≥2000 次<br><strong>快充能力：</strong>30-80% SOC 约 30 分钟 (150kW 直流快充)<br><strong>功能：</strong>存储电能，为驱动电机供电，支持能量回收'
+        },
+        'motor': {
+            title: '⚡ 驱动电机系统',
+            content: '<strong>电机类型：</strong>永磁同步电机 (PMSM)<br><strong>额定功率：</strong>150-200 kW<br><strong>峰值扭矩：</strong>300-400 N·m<br><strong>最高效率：</strong>≥96%<br><strong>最高转速：</strong>12000-16000 rpm<br><strong>冷却方式：</strong>水冷<br><strong>功能：</strong>将电能转换为机械能，驱动车辆行驶'
+        },
+        'ecu': {
+            title: '🎛️ 整车控制器 (VCU)',
+            content: '<strong>工作电压：</strong>12V/24V<br><strong>处理器：</strong>车规级 MCU (如 Infineon AURIX)<br><strong>工作温度：</strong>-40℃ ~ 85℃<br><strong>防护等级：</strong>IP67<br><strong>功能：</strong>能量管理、驾驶模式控制、故障诊断、热管理协调、充电控制、CAN 总线通信'
+        },
+        'charge': {
+            title: '🔌 充电系统',
+            content: '<strong>交流慢充：</strong>7-11 kW (220V/32A), 充满约 6-10 小时<br><strong>直流快充：</strong>60-150 kW (400V), 30-80% 约 30 分钟<br><strong>充电接口：</strong>国标 GB/T (中国) 或 CCS (欧洲)<br><strong>车载充电机 (OBC)：</strong>将交流电转换为直流电为电池充电<br><strong>功能：</strong>支持家用充电桩、公共充电站、超级充电站'
+        }
+    };
+    
+    const panel = document.getElementById('bev-detail-panel');
+    const title = document.getElementById('bev-detail-title');
+    const content = document.getElementById('bev-detail-content');
+    
+    if (details[component]) {
+        title.innerHTML = details[component].title;
+        content.innerHTML = details[component].content;
+        panel.style.display = 'block';
+        panel.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+}
+</script>
             <section class="learning-section" id="components">
                 <div class="section-header">
                     <div class="section-icon">🔧</div>
