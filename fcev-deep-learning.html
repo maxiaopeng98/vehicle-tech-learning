@@ -5,21 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>燃料电池汽车 (FCEV) 深度学习 - 车辆技术学习平台</title>
     <style>
-        :root {
-            --fcev-color: #0891b2;
-            --fcev-light: #06b6d4;
-            --fcev-dark: #0e7490;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-color: #334155;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
+        :root { --fcev-color: #0891b2; --fcev-light: #06b6d4; --fcev-dark: #0e7490; --bg-dark: #0f172a; --bg-card: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --border-color: #334155; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto; }
-        
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); }
         .nav-brand a { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-primary); }
         .nav-brand h1 { font-size: 1.5rem; font-weight: 700; }
@@ -28,16 +16,12 @@
         .nav-link { color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: all 0.3s ease; }
         .nav-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
         .nav-link.active { background: var(--fcev-color); color: white; }
-        
         .breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; color: var(--text-secondary); font-size: 0.9rem; }
         .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
         .breadcrumb a:hover { color: var(--fcev-color); }
-        .breadcrumb-separator { color: var(--border-color); }
-        
-        .page-header { text-align: center; margin-bottom: 50px; padding: 50px 30px; background: linear-gradient(135deg, var(--fcev-dark) 0%, var(--fcev-color) 100%); border-radius: 20px; position: relative; overflow: hidden; }
+        .page-header { text-align: center; margin-bottom: 50px; padding: 50px 30px; background: linear-gradient(135deg, var(--fcev-dark) 0%, var(--fcev-color) 100%); border-radius: 20px; }
         .page-header h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; }
         .page-subtitle { font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; line-height: 1.5; }
-        
         .learning-container { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 60px; }
         .sidebar { position: sticky; top: 20px; height: fit-content; }
         .sidebar-nav { background: var(--bg-card); border-radius: 16px; padding: 25px; border: 2px solid var(--border-color); }
@@ -47,66 +31,49 @@
         .sidebar-link { display: block; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: 10px; transition: all 0.3s ease; border-left: 3px solid transparent; }
         .sidebar-link:hover { background: rgba(8, 145, 178, 0.1); color: var(--fcev-color); border-left-color: var(--fcev-color); }
         .sidebar-link.active { background: rgba(8, 145, 178, 0.2); color: var(--fcev-color); border-left-color: var(--fcev-color); font-weight: 600; }
-        
         .learning-content { background: var(--bg-card); border-radius: 16px; padding: 40px; border: 2px solid var(--border-color); }
         .learning-section { margin-bottom: 50px; scroll-margin-top: 20px; }
         .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); }
         .section-icon { font-size: 2rem; color: var(--fcev-color); }
         .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); }
         .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-top: 5px; }
-        
         .content-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid var(--fcev-color); }
-        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--fcev-color); display: flex; align-items: center; gap: 10px; }
+        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--fcev-color); }
         .card-content { color: var(--text-secondary); line-height: 1.7; }
         .card-content ul { list-style: none; padding-left: 20px; }
-        .card-content li { margin-bottom: 10px; position: relative; }
-        .card-content li:before { content: '•'; color: var(--fcev-color); font-weight: bold; position: absolute; left: -20px; }
-        
+        .card-content li { margin-bottom: 10px; }
+        .card-content li:before { content: '•'; color: var(--fcev-color); font-weight: bold; margin-right: 10px; }
         .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255, 255, 255, 0.03); border-radius: 10px; overflow: hidden; }
         .tech-table th { background: var(--fcev-color); color: white; padding: 15px; text-align: left; font-weight: 600; }
         .tech-table td { padding: 15px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
         .tech-table tr:last-child td { border-bottom: none; }
         .tech-table tr:hover { background: rgba(8, 145, 178, 0.1); }
-        
-        .knowledge-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 25px 0; }
+        .knowledge-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 25px 0; }
         .knowledge-card { background: rgba(8, 145, 178, 0.1); border: 1px solid var(--fcev-color); border-radius: 12px; padding: 20px; }
         .knowledge-title { font-weight: 700; margin-bottom: 10px; color: var(--fcev-color); }
-        
         .footer { text-align: center; padding: 40px 20px; color: var(--text-secondary); border-top: 2px solid var(--border-color); margin-top: 60px; }
         .footer-links { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
-        .footer-link { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; }
         .footer-link:hover { color: var(--text-primary); }
         .copyright { font-size: 0.9rem; margin-top: 20px; }
-        
         @media (max-width: 1024px) { .learning-container { grid-template-columns: 1fr; } .sidebar { position: static; } }
-        @media (max-width: 768px) { .page-header h1 { font-size: 2.2rem; } .page-subtitle { font-size: 1.1rem; } .nav-links { display: none; } .knowledge-points { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .page-header h1 { font-size: 2.2rem; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
     <nav class="top-nav">
-        <div class="nav-brand">
-            <a href="index.html"><span>🚗</span><h1>车辆技术学习平台</h1></a>
-            <span class="nav-current">/ FCEV深度学习</span>
-        </div>
+        <div class="nav-brand"><a href="index.html"><span>🚀</span><h1>车辆技术学习平台</h1></a><span class="nav-current">/ FCEV 深度学习</span></div>
         <div class="nav-links">
             <a href="index.html" class="nav-link">返回首页</a>
-            <a href="#overview" class="nav-link active">FCEV概述</a>
+            <a href="#overview" class="nav-link active">FCEV 概述</a>
             <a href="#components" class="nav-link">核心组件</a>
-            <a href="#manufacturing" class="nav-link">制造工艺</a>
         </div>
     </nav>
-
-    <div class="breadcrumb">
-        <a href="index.html">首页</a><span class="breadcrumb-separator">/</span>
-        <a href="index.html#learning">技术路线</a><span class="breadcrumb-separator">/</span>
-        <span>燃料电池汽车 (FCEV)</span>
-    </div>
-
+    <div class="breadcrumb"><a href="index.html">首页</a><span>/</span><a href="index.html#learning">技术路线</a><span>/</span><span>燃料电池汽车 (FCEV)</span></div>
     <header class="page-header" id="overview">
         <h1>🚀 燃料电池汽车 (FCEV) 深度学习</h1>
-        <p class="page-subtitle">通过氢氧反应发电驱动车辆，水是唯一排放物，加氢快速，是零排放汽车的重要技术路线。</p>
+        <p class="page-subtitle">通过氢氧反应发电，水是唯一排放物，加氢快速，是终极清洁能源汽车方案</p>
     </header>
-
     <div class="learning-container">
         <aside class="sidebar">
             <nav class="sidebar-nav">
@@ -133,23 +100,19 @@
                 </ul>
             </div>
         </aside>
-
         <main class="learning-content">
             <section class="learning-section" id="overview">
-                <div class="section-header">
-                    <div class="section-icon">📖</div>
-                    <div><h2 class="section-title">1. 知识概述</h2><p class="section-subtitle">燃料电池汽车的基本概念、技术特点及发展前景</p></div>
-                </div>
+                <div class="section-header"><div class="section-icon">📖</div><div><h2 class="section-title">1. 知识概述</h2><p class="section-subtitle">燃料电池汽车的基本概念、技术特点及发展前景</p></div></div>
                 <div class="content-card">
                     <h3 class="card-title">🎯 学习目标</h3>
                     <div class="card-content">
                         <ul>
-                            <li>掌握FCEV的基本定义和技术分类</li>
+                            <li>掌握 FCEV 的基本定义和技术分类</li>
                             <li>理解燃料电池工作原理及电化学反应</li>
-                            <li>熟悉FCEV的氢能系统构成</li>
-                            <li>了解FCEV制造工艺的特殊要求</li>
-                            <li>掌握FCEV相关的安全与质量管理要点</li>
-                            <li>了解氢能基础设施现状和发展趋势</li>
+                            <li>熟悉燃料电池系统关键组件</li>
+                            <li>了解氢燃料电池制造工艺</li>
+                            <li>掌握 FCEV 质量管理要点</li>
+                            <li>了解 FCEV 市场现状和发展趋势</li>
                         </ul>
                     </div>
                 </div>
@@ -157,47 +120,338 @@
                     <h3 class="card-title">📊 技术特点概览</h3>
                     <div class="card-content">
                         <table class="tech-table">
-                            <tr><th>技术特征</th><th>FCEV特点</th><th>与BEV对比</th><th>技术优势</th></tr>
-                            <tr><td>能量来源</td><td>氢气</td><td>电能</td><td>能量密度高</td></tr>
-                            <tr><td>加注时间</td><td>3-5分钟</td><td>30-60分钟</td><td>接近燃油车体验</td></tr>
-                            <tr><td>排放物</td><td>水</td><td>零排放</td><td>真正环保</td></tr>
-                            <tr><td>续航里程</td><td>500-800km</td><td>400-700km</td><td>长续航优势</td></tr>
-                            <tr><td>基础设施</td><td>加氢站少</td><td>充电桩较多</td><td>发展初期</td></tr>
+                            <tr><th>技术特征</th><th>FCEV 特点</th><th>与 BEV 对比</th><th>与 ICE 对比</th></tr>
+                            <tr><td>能源来源</td><td>氢气</td><td>电能</td><td>汽油/柴油</td></tr>
+                            <tr><td>排放物</td><td>水 (H₂O)</td><td>零排放</td><td>CO₂、NOx</td></tr>
+                            <tr><td>加能时间</td><td>3-5 分钟</td><td>30 分钟 -8 小时</td><td>3-5 分钟</td></tr>
+                            <tr><td>续航里程</td><td>500-800 km</td><td>400-700 km</td><td>500-1000 km</td></tr>
+                            <tr><td>能量效率</td><td>40-60%</td><td>70-90%</td><td>20-35%</td></tr>
                         </table>
                     </div>
                 </div>
             </section>
-            
+            <section class="learning-section" id="definition">
+                <div class="section-header"><div class="section-icon">📝</div><div><h2 class="section-title">2. 定义与分类</h2><p class="section-subtitle">FCEV 的准确定义、技术分类及标准规范</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">🔍 技术定义</h3>
+                    <div class="card-content">
+                        <p><strong>燃料电池汽车 (Fuel Cell Electric Vehicle, FCEV)</strong> 是通过氢气和氧气的电化学反应产生电能，驱动电动机行驶的汽车：</p>
+                        <ul>
+                            <li><strong>燃料电池发电</strong>：氢气 + 氧气 → 电能 + 水</li>
+                            <li><strong>零排放</strong>：唯一排放物是纯净水</li>
+                            <li><strong>电动车驱动</strong>：由电动机驱动车辆</li>
+                            <li><strong>快速加氢</strong>：3-5 分钟加满氢气</li>
+                            <li><strong>长续航</strong>：500-800 公里续航</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 燃料电池类型</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>类型</th><th>电解质</th><th>工作温度</th><th>应用</th></tr>
+                            <tr><td>质子交换膜 (PEMFC)</td><td>固体聚合物</td><td>60-80℃</td><td>汽车、便携电源</td></tr>
+                            <tr><td>碱性燃料电池 (AFC)</td><td>氢氧化钾溶液</td><td>60-90℃</td><td>航天</td></tr>
+                            <tr><td>磷酸燃料电池 (PAFC)</td><td>磷酸</td><td>150-200℃</td><td>固定电站</td></tr>
+                            <tr><td>熔融碳酸盐 (MCFC)</td><td>碳酸盐</td><td>600-700℃</td><td>大型电站</td></tr>
+                            <tr><td>固体氧化物 (SOFC)</td><td>陶瓷</td><td>800-1000℃</td><td>固定电站</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="principle">
+                <div class="section-header"><div class="section-icon">⚙️</div><div><h2 class="section-title">3. 工作原理</h2><p class="section-subtitle">燃料电池电化学反应、系统架构及控制策略</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电化学反应</h3>
+                    <div class="card-content">
+                        <p><strong>质子交换膜燃料电池 (PEMFC) 工作原理</strong>：</p>
+                        <ul>
+                            <li><strong>阳极反应</strong>：H₂ → 2H⁺ + 2e⁻（氢气氧化）</li>
+                            <li><strong>阴极反应</strong>：½O₂ + 2H⁺ + 2e⁻ → H₂O（氧气还原）</li>
+                            <li><strong>总反应</strong>：H₂ + ½O₂ → H₂O + 电能 + 热能</li>
+                            <li><strong>理论电压</strong>：1.23V，实际工作电压 0.6-0.8V</li>
+                        </ul>
+                        <p><strong>单电池结构</strong>：阳极 | 质子交换膜 | 阴极，多个单电池串联成电堆</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🔄 系统架构</h3>
+                    <div class="card-content">
+                        <p><strong>FCEV 系统主要组件</strong>：</p>
+                        <ul>
+                            <li><strong>燃料电池电堆</strong>：核心发电装置</li>
+                            <li><strong>氢气系统</strong>：储氢瓶、减压阀、氢气循环泵</li>
+                            <li><strong>空气系统</strong>：空压机、加湿器、空气过滤器</li>
+                            <li><strong>热管理系统</strong>：散热器、水泵、节温器</li>
+                            <li><strong>电控系统</strong>：DC/DC 转换器、燃料电池控制器</li>
+                            <li><strong>动力电池</strong>：锂电池或超级电容，用于能量回收和峰值功率</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="components">
+                <div class="section-header"><div class="section-icon">🔧</div><div><h2 class="section-title">4. 核心组件</h2><p class="section-subtitle">FCEV 关键部件的技术参数、功能要求</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 燃料电池电堆</h3>
+                    <div class="card-content">
+                        <p><strong>电堆关键参数</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>参数</th><th>典型值</th><th>说明</th></tr>
+                            <tr><td>额定功率</td><td>80-150 kW</td><td>乘用车常用范围</td></tr>
+                            <tr><td>功率密度</td><td>3-5 kW/L</td><td>体积功率密度</td></tr>
+                            <tr><td>质量功率密度</td><td>2-3 kW/kg</td><td>重量功率密度</td></tr>
+                            <tr><td>工作电压</td><td>200-400V</td><td>电堆输出电压</td></tr>
+                            <tr><td>寿命</td><td>5000-10000 小时</td><td>车用要求</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⛽ 储氢系统</h3>
+                    <div class="card-content">
+                        <p><strong>高压储氢瓶</strong>：</p>
+                        <table class="tech-table">
+                            <tr><th>类型</th><th>压力</th><th>质量储氢密度</th><th>成本</th></tr>
+                            <tr><td>I 型</td><td>20MPa</td><td>1.0-1.5 wt%</td><td>低</td></tr>
+                            <tr><td>II 型</td><td>35MPa</td><td>1.5-2.5 wt%</td><td>中</td></tr>
+                            <tr><td>III 型</td><td>35-70MPa</td><td>3.0-4.0 wt%</td><td>高</td></tr>
+                            <tr><td>IV 型</td><td>70MPa</td><td>5.0-6.0 wt%</td><td>很高</td></tr>
+                        </table>
+                        <p><strong>储氢瓶要求</strong>：耐压、耐冲击、耐火烧、氢渗透率低</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">💨 空气供应系统</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>空压机</strong>：提供反应所需氧气，功率 10-30kW</li>
+                            <li><strong>加湿器</strong>：保持质子交换膜湿润，提高导电性</li>
+                            <li><strong>空气过滤器</strong>：过滤杂质，保护电堆</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="materials">
+                <div class="section-header"><div class="section-icon">🧪</div><div><h2 class="section-title">5. 材料科学</h2><p class="section-subtitle">FCEV 关键材料的性能要求及选择标准</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 膜电极材料</h3>
+                    <div class="card-content">
+                        <p><strong>质子交换膜</strong>：</p>
+                        <ul>
+                            <li><strong>全氟磺酸膜 (Nafion)</strong>：质子传导率高，化学稳定性好</li>
+                            <li><strong>要求</strong>：质子传导率≥0.1 S/cm，厚度 10-50μm</li>
+                            <li><strong>挑战</strong>：高温低湿下性能下降，成本高</li>
+                        </ul>
+                        <p><strong>催化剂</strong>：</p>
+                        <ul>
+                            <li><strong>铂基催化剂</strong>：Pt/C，催化活性高</li>
+                            <li><strong>低铂化</strong>：降低铂用量，目标<0.1 g/kW</li>
+                            <li><strong>非铂催化剂</strong>：Fe-N-C 等，研究中</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 双极板材料</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>材料类型</th><th>优点</th><th>缺点</th><th>应用</th></tr>
+                            <tr><td>石墨板</td><td>耐腐蚀、导电好</td><td>脆、加工难</td><td>固定电站</td></tr>
+                            <tr><td>金属板</td><td>强度高、易加工</td><td>需防腐涂层</td><td>车用主流</td></tr>
+                            <tr><td>复合板</td><td>综合性能好</td><td>成本高</td><td>高端应用</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⛽ 储氢瓶材料</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>内胆</strong>：铝合金 (III 型) 或高密度聚乙烯 (IV 型)</li>
+                            <li><strong>缠绕层</strong>：碳纤维/环氧树脂复合材料</li>
+                            <li><strong>要求</strong>：高强度、轻量化、耐氢脆</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="manufacturing">
+                <div class="section-header"><div class="section-icon">🏭</div><div><h2 class="section-title">6. 制造工艺</h2><p class="section-subtitle">FCEV 关键部件的生产工艺及装配流程</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">🔋 膜电极制造</h3>
+                    <div class="card-content">
+                        <p><strong>工艺流程</strong>：</p>
+                        <ol>
+                            <li><strong>催化剂涂布</strong>：将催化剂浆料涂布在质子交换膜或气体扩散层上</li>
+                            <li><strong>热压复合</strong>：将膜与气体扩散层热压成膜电极</li>
+                            <li><strong>检测</strong>：外观检查、性能测试</li>
+                        </ol>
+                        <p><strong>关键控制</strong>：催化剂载量均匀性、热压温度压力控制</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📦 电堆装配</h3>
+                    <div class="card-content">
+                        <p><strong>电堆装配流程</strong>：</p>
+                        <ol>
+                            <li><strong>单电池准备</strong>：膜电极、双极板、密封件</li>
+                            <li><strong>叠片</strong>：按顺序叠放单电池</li>
+                            <li><strong>压紧</strong>：施加适当压力，保证接触</li>
+                            <li><strong>封装</strong>：安装端板、螺栓紧固</li>
+                            <li><strong>测试</strong>：气密性测试、性能测试</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⛽ 储氢瓶制造</h3>
+                    <div class="card-content">
+                        <p><strong>IV 型瓶工艺流程</strong>：</p>
+                        <ol>
+                            <li><strong>内胆成型</strong>：高密度聚乙烯吹塑成型</li>
+                            <li><strong>纤维缠绕</strong>：碳纤维浸渍树脂后缠绕</li>
+                            <li><strong>固化</strong>：高温固化</li>
+                            <li><strong>自紧处理</strong>：提高疲劳寿命</li>
+                            <li><strong>检测</strong>：水压试验、气密试验、爆破试验</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="quality">
+                <div class="section-header"><div class="section-icon">✅</div><div><h2 class="section-title">7. 质量管理</h2><p class="section-subtitle">FCEV 制造过程的质量控制体系</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">📋 电堆质量控制</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>控制项目</th><th>控制方法</th><th>要求</th></tr>
+                            <tr><td>膜电极性能</td><td>极化曲线测试</td><td>功率密度达标</td></tr>
+                            <tr><td>气密性</td><td>氦质谱检漏</td><td>泄漏率≤10⁻⁶ Pa·m³/s</td></tr>
+                            <tr><td>绝缘电阻</td><td>绝缘测试仪</td><td>≥500 MΩ</td></tr>
+                            <tr><td>一致性</td><td>单电池电压监测</td><td>电压差≤50 mV</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">⛽ 储氢瓶质量控制</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>水压试验</strong>：1.5 倍工作压力，保压 30 秒</li>
+                            <li><strong>气密试验</strong>：氦气检漏，泄漏率达标</li>
+                            <li><strong>爆破试验</strong>：抽样测试，爆破压力≥2.25 倍工作压力</li>
+                            <li><strong>疲劳试验</strong>：压力循环≥11000 次</li>
+                            <li><strong>火烧试验</strong>：通过火烧测试，安全泄压</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="application">
+                <div class="section-header"><div class="section-icon">📈</div><div><h2 class="section-title">8. 市场应用</h2><p class="section-subtitle">FCEV 市场现状、发展趋势及应用场景</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">🌍 市场现状</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>地区</th><th>主要品牌</th><th>加氢站数量</th><th>政策支持</th></tr>
+                            <tr><td>日本</td><td>丰田 Mirai、本田 Clarity</td><td>160+</td><td>补贴、加氢站建设</td></tr>
+                            <tr><td>韩国</td><td>现代 NEXO</td><td>200+</td><td>氢能经济 roadmap</td></tr>
+                            <tr><td>中国</td><td>上汽、长城、亿华通</td><td>350+</td><td>燃料电池汽车示范</td></tr>
+                            <tr><td>欧洲</td><td>宝马、奔驰</td><td>400+</td><td>氢能战略</td></tr>
+                            <tr><td>美国</td><td>丰田、现代</td><td>50+</td><td>加州 ZEV 政策</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 应用场景</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">商用车</div>
+                                <p>公交车、物流车、重卡</p>
+                                <p>固定路线、集中加氢</p>
+                                <p>当前主要应用</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">乘用车</div>
+                                <p>中高端轿车、SUV</p>
+                                <p>长续航、快速加氢</p>
+                                <p>未来潜力市场</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">特种车辆</div>
+                                <p>叉车、港口车辆</p>
+                                <p>室内零排放</p>
+                                <p>已商业化应用</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🚀 发展趋势</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>成本下降</strong>：电堆成本目标<$50/kW（2030 年）</li>
+                            <li><strong>寿命提升</strong>：商用车>25000 小时，乘用车>8000 小时</li>
+                            <li><strong>加氢站建设</strong>：中国目标 2025 年 1000 座</li>
+                            <li><strong>绿氢发展</strong>：可再生能源制氢，全生命周期零碳</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="learning-section" id="resources">
+                <div class="section-header"><div class="section-icon">📚</div><div><h2 class="section-title">9. 学习资源</h2><p class="section-subtitle">FCEV 技术学习资料</p></div></div>
+                <div class="content-card">
+                    <h3 class="card-title">📖 参考书籍</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>《燃料电池原理与应用》- 燃料电池基础理论</li>
+                            <li>《氢能技术与应用》- 氢能全产业链</li>
+                            <li>《燃料电池汽车技术》- FCEV 系统设计</li>
+                            <li>《质子交换膜燃料电池技术》- 电堆技术详解</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🌐 在线资源</h3>
+                    <div class="card-content">
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业组织</div>
+                                <p>国际氢能委员会</p>
+                                <p>中国氢能联盟</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">学术资源</div>
+                                <p>Journal of Power Sources</p>
+                                <p>国际氢能期刊</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">行业网站</div>
+                                <p>高工氢电</p>
+                                <p>氢能网</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <div class="content-card" style="background: linear-gradient(135deg, var(--fcev-dark) 0%, var(--fcev-color) 100%); color: white;">
-                <h3 class="card-title" style="color: white;">🔬 技术前沿</h3>
+                <h3 class="card-title" style="color: white;">🚀 深入学习提示</h3>
                 <div class="card-content">
-                    <p>FCEV是未来零排放交通的重要方向，建议重点关注：</p>
+                    <p>FCEV 是终极清洁能源汽车方案，建议重点关注：</p>
                     <ol style="padding-left: 20px; margin: 15px 0;">
-                        <li>质子交换膜燃料电池技术</li>
-                        <li>高压储氢系统安全技术</li>
-                        <li>氢能基础设施布局</li>
-                        <li>燃料电池寿命与成本控制</li>
+                        <li>燃料电池电堆技术</li>
+                        <li>储氢系统安全</li>
+                        <li>加氢基础设施建设</li>
+                        <li>绿氢制备技术</li>
                     </ol>
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
                         <a href="index.html" style="background: white; color: var(--fcev-color); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">返回首页</a>
-                        <a href="bev-deep-learning.html" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">对比BEV技术</a>
+                        <a href="bev-deep-learning.html" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">学习 BEV 技术</a>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
     <footer class="footer">
         <div class="footer-links">
             <a href="index.html" class="footer-link">返回首页</a>
-            <a href="quality-management.html" class="footer-link">质量管理体系</a>
-            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub仓库</a>
-            <a href="#" class="footer-link">氢能技术</a>
+            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub 仓库</a>
         </div>
-        <div class="copyright">© 2026 车辆技术学习平台 | FCEV深度学习模块 | 前沿技术探索</div>
-        <div style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">氢能技术与燃料电池汽车前沿研究</div>
+        <div class="copyright">© 2026 车辆技术学习平台 | FCEV 深度学习模块</div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarLinks = document.querySelectorAll('.sidebar-link');
@@ -205,15 +459,11 @@
             window.addEventListener('scroll', function() {
                 let current = '';
                 sections.forEach(section => {
-                    if (scrollY >= (section.offsetTop - 150)) {
-                        current = section.getAttribute('id');
-                    }
+                    if (scrollY >= (section.offsetTop - 150)) { current = section.getAttribute('id'); }
                 });
                 sidebarLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
+                    if (link.getAttribute('href') === '#'+current) { link.classList.add('active'); }
                 });
             });
             sidebarLinks.forEach(link => {
@@ -221,12 +471,7 @@
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
+                    if (targetElement) { window.scrollTo({top: targetElement.offsetTop - 100, behavior: 'smooth'}); }
                 });
             });
         });
