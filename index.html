@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车辆技术深度学习平台 - 制造工艺与质量管理视角</title>
+    <style>
+        :root {
+            --ice-color: #dc2626;      /* 燃油车 - 红色 */
+            --bev-color: #2563eb;      /* 纯电动 - 蓝色 */
+            --hev-color: #16a34a;      /* 混动车 - 绿色 */
+            --erev-color: #9333ea;     /* 增程式 - 紫色 */
+            --fcev-color: #0891b2;     /* 燃料电池 - 青色 */
+            --quality-color: #f59e0b;  /* 质量管理 - 橙色 */
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --gradient-ice: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            --gradient-bev: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --gradient-hev: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            --gradient-erev: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+            --gradient-quality: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 顶部导航栏 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #f8fafc, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-tagline {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+        
+        .nav-link.active {
+            background: var(--bev-color);
+            color: white;
+        }
+        
+        /* 主标题区域 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 60px 30px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .main-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--ice-color) 16.6%, 
+                var(--bev-color) 16.6% 33.2%, 
+                var(--hev-color) 33.2% 49.8%,
+                var(--erev-color) 49.8% 66.4%,
+                var(--fcev-color) 66.4% 83%,
+                var(--quality-color) 83% 100%);
+        }
+        
+        .main-header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: #f8fafc;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #f8fafc, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header-subtitle {
+            color: #94a3b8;
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .header-highlight {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.2);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            color: #60a5fa;
+            border: 1px solid #3b82f6;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        
+        /* 技术路线卡片网格 */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .tech-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: currentColor;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tech-card.ice { color: var(--ice-color); }
+        .tech-card.bev { color: var(--bev-color); }
+        .tech-card.hev { color: var(--hev-color); }
+        .tech-card.erev { color: var(--erev-color); }
+        .tech-card.fcev { color: var(--fcev-color); }
+        .tech-card.quality { color: var(--quality-color); }
+        
+        .tech-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: currentColor;
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .tech-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .tech-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .tech-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .tech-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+        
+        .tech-features li:before {
+            content: '✓';
+            color: currentColor;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* 深入学习按钮 */
+        .deep-learning-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, currentColor, rgba(255, 255, 255, 0.2));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .deep-learning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 学习进度 */
+        .learning-progress {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 50px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .progress-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .progress-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--bev-color);
+        }
+        
+        .progress-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .progress-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            border-top: 2px solid var(--border-color);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <h1>🚗 车辆技术深度学习平台</h1>
+            <span class="nav-tagline">制造工艺 · 质量管理 · 技术演进</span>
+        </div>
+        <div class="nav-links">
+            <a href="#overview" class="nav-link active">技术概览</a>
+            <a href="#learning" class="nav-link">深度学习</a>
+            <a href="#quality" class="nav-link">质量管理</a>
+            <a href="#resources" class="nav-link">学习资源</a>
+        </div>
+    </nav>
+
+    <!-- 主标题区域 -->
+    <header class="main-header" id="overview">
+        <h1>车辆技术深度学习平台</h1>
+        <p class="header-subtitle">
+            基于18年汽车制造经验，系统学习新能源汽车技术、制造工艺与质量管理体系。<br>
+            从技术原理到生产实践，构建完整的知识体系。
+        </p>
+        <div class="header-highlight">
+            🎯 学习目标：掌握智能新能源汽车核心技术，提升制造工艺与质量管理能力
+        </div>
+    </header>
+
+    <!-- 技术路线卡片网格 -->
+    <section class="tech-grid" id="learning">
+        <!-- 纯电动汽车 -->
+        <div class="tech-card bev">
+            <div class="tech-icon">🔋</div>
+            <h2 class="tech-title">纯电动汽车 (BEV)</h2>
+            <p class="tech-description">
+                完全由电池供电、电机驱动的车辆，零尾气排放，结构相对简单。
+            </p>
+            <ul class="tech-features">
+                <li>三电系统：电池、电机、电控</li>
+                <li>零排放，使用成本低</li>
+                <li>充电基础设施依赖</li>
+                <li>续航里程是关键指标</li>
+            </ul>
+            <a href="bev-deep-learning.html" class="deep-learning-btn">
+                🔍 深入学习 BEV 技术
+            </a>
+        </div>
+
+        <!-- 插电混动汽车 -->
+        <div class="tech-card hev">
+            <div class="tech-icon">⚡</div>
+            <h2 class="tech-title">插电混动汽车 (PHEV)</h2>
+            <p class="tech-description">
+                兼具燃油发动机和电动机，可外接充电，多种工作模式灵活切换。
+            </p>
+            <ul class="tech-features">
+                <li>双动力系统协同工作</li>
+                <li>可纯电行驶50-100km</li>
+                <li>无里程焦虑</li>
+                <li>系统复杂度较高</li>
+            </ul>
+            <a href="phev-deep-learning.html" class="deep-learning-btn">
+                🔍 深入学习 PHEV 技术
+            </a>
+        </div>
+
+        <!-- 增程式电动汽车 -->
+        <div class="tech-card erev">
+            <div class="tech-icon">🔄</div>
+            <h2 class="tech-title">增程式电动汽车 (EREV)</h2>
+            <p class="tech-description">
+                发动机仅作为发电机，为电池充电，车辆始终由电机驱动。
+            </p>
+            <ul class="tech-features">
+                <li>发动机不直接驱动车轮</li>
+                <li>纯电驾驶体验</li>
+                <li>续航里程显著延长</li>
+                <li>能量转换有损耗</li>
+            </ul>
+            <a href="erev-deep-learning.html" class="deep-learning-btn">
+                🔍 深入学习 EREV 技术
+            </a>
+        </div>
+
+        <!-- 传统燃油车 -->
+        <div class="tech-card ice">
+            <div class="tech-icon">⛽</div>
+            <h2 class="tech-title">传统燃油车 (ICE)</h2>
+            <p class="tech-description">
+                以内燃机为动力源，技术成熟，加油便捷，但排放和能耗较高。
+            </p>
+            <ul class="tech-features">
+                <li>内燃机技术成熟</li>
+                <li>加油基础设施完善</li>
+                <li>排放和能耗挑战</li>
+                <li>向混动/电动转型</li>
+            </ul>
+            <a href="ice-deep-learning.html" class="deep-learning-btn">
+                🔍 深入学习 ICE 技术
+            </a>
+        </div>
+
+        <!-- 燃料电池汽车 -->
+        <div class="tech-card fcev">
+            <div class="tech-icon">🚀</div>
+            <h2 class="tech-title">燃料电池汽车 (FCEV)</h2>
+            <p class="tech-description">
+                通过氢氧反应发电，水是唯一排放物，加氢快速，但基础设施有限。
+            </p>
+            <ul class="tech-features">
+                <li>氢氧反应发电</li>
+                <li>零排放（仅水）</li>
+                <li>加氢3-5分钟</li>
+                <li>基础设施待完善</li>
+            </ul>
+            <a href="fcev-deep-learning.html" class="deep-learning-btn">
+                🔍 深入学习 FCEV 技术
+            </a>
+        </div>
+
+        <!-- 质量管理体系 -->
+        <div class="tech-card quality" id="quality">
+            <div class="tech-icon">✅</div>
+            <h2 class="tech-title">质量管理体系</h2>
+            <p class="tech-description">
+                ISO9001、IATF16949等质量管理体系在汽车制造中的应用与实践。
+            </p>
+            <ul class="tech-features">
+                <li>ISO9001 质量管理体系</li>
+                <li>IATF16949 汽车行业标准</li>
+                <li>APQP/PPAP/FMEA/SPC/MSA</li>
+                <li>制造过程质量控制</li>
+            </ul>
+            <a href="quality-management.html" class="deep-learning-btn">
+                🔍 深入学习质量管理
+            </a>
+        </div>
+    </section>
+
+    <!-- 学习进度 -->
+    <section class="learning-progress">
+        <h2 class="progress-title">📊 学习进度跟踪</h2>
+        <div class="progress-grid">
+            <div class="progress-item">
+                <div class="progress-label">已学习技术路线</div>
+                <div class="progress-value" id="learnedCount">0/5</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">学习总时长</div>
+                <div class="progress-value" id="totalTime">0 小时</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">完成度</div>
+                <div class="progress-value" id="completionRate">0%</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">下次学习建议</div>
+                <div class="progress-value" id="nextSuggestion">BEV技术</div>
+            </div>
+        </div>
+        <div style="margin-top: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+            💡 提示：点击上方卡片开始深度学习，系统会自动记录你的学习进度。
+        </div>
+    </section>
+
+    <!-- 学习资源 -->
+    <section class="learning-progress" id="resources">
+        <h2 class="progress-title">📚 学习资源推荐</h2>
+        <div class="progress-grid">
+            <div class="progress-item">
+                <div class="progress-label">技术标准</div>
+                <div>GB/T 电动汽车标准<br>ISO 26262 功能安全<br>SAE J系列标准</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">行业报告</div>
+                <div>中国汽车工业协会<br>德勤汽车行业报告<br>麦肯锡新能源汽车研究</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">专业书籍</div>
+                <div>《电动汽车工程手册》<br>《汽车制造工艺学》<br>《IATF16949实战指南》</div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label">在线课程</div>
+                <div>Coursera 汽车工程<br>edX 电动汽车技术<br>中国大学MOOC 制造工艺</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://maxiaopeng98.github.io/erev-structure/" class="footer-link" target="_blank">EREV专项学习</a>
+            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub仓库</a>
+            <a href="#" class="footer-link">学习笔记</a>
+            <a href="#" class="footer-link">技术交流</a>
+        </div>
+        <div class="copyright">
+            © 2026 车辆技术深度学习平台 | 基于18年汽车制造经验构建 | 持续更新中
+        </div>
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">
+            本平台内容结合制造实践与质量管理体系，适合汽车行业从业者深度学习
+        </div>
+    </footer>
+
+    <script>
+        // 学习进度管理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从localStorage获取学习进度
+            let learningData = {
+                bev: { visited: false, time: 0 },
+                phev: { visited: false, time: 0 },
+                erev: { visited: false, time: 0 },
+                ice: { visited: false, time: 0 },
+                fcev: { visited: false, time: 0 },
+                quality: { visited: false, time: 0 }
+            };
+
+            try {
+                const saved = localStorage.getItem('vehicleLearningData');
+                if (saved) {
+                    learningData = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.log('无法读取学习数据');
+            }
+
+            // 更新学习进度显示
+            function updateProgressDisplay() {
+                const visitedCount = Object.values(learningData).filter(item => item.visited).length;
+                const totalTime = Object.values(learningData).reduce((sum, item) => sum + item.time, 0);
+                const completionRate = Math.round((visitedCount / 6) * 100);
+                
+                document.getElementById('learnedCount').textContent = `${visitedCount}/6`;
+                document.getElementById('totalTime').textContent = `${totalTime} 分钟`;
+                document.getElementById('completionRate').textContent = `${completionRate}%`;
+                
+                // 推荐下一个学习内容
+                const suggestions = [
+                    { key: 'bev', name: 'BEV技术' },
+                    { key: 'phev', name: 'PHEV技术' },
+                    { key: 'erev', name: 'EREV技术' },
+                    { key: 'ice', name: '燃油车技术' },
+                    { key: 'fcev', name: '燃料电池技术' },
+                    { key: 'quality', name: '质量管理' }
+                ];
+                
+                const nextToLearn = suggestions.find(item => !learningData[item.key].visited) || suggestions[0];
+                document.getElementById('nextSuggestion').textContent = nextToLearn.name;
+            }
+
+            // 为深度学习按钮添加点击跟踪
+            document.querySelectorAll('.deep-learning-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const techKey = href.split('-')[0]; // bev, phev, erev, ice, fcev, quality
+                    
+                    if (techKey in learningData) {
+                        learningData[techKey].visited = true;
+                        learningData[techKey].time += 5; // 假设学习5分钟
+                        
+                        try {
+                            localStorage.setItem('vehicleLearningData', JSON.stringify(learningData));
+                        } catch (e) {
+                            console.log('无法保存学习数据');
+                        }
+                    }
+                });
+            });
+
+            // 初始化显示
+            updateProgressDisplay();
+
+            // 页面活跃时间跟踪
+            let startTime = Date.now();
+            window.addEventListener('beforeunload', function() {
+                const timeSpent = Math.round((Date.now() - startTime) / 60000); // 分钟
+                console.log(`本次学习时长: ${timeSpent}分钟`);
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

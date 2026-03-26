@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传统燃油车 (ICE) 深度学习 - 车辆技术学习平台</title>
+    <style>
+        :root {
+            --ice-color: #dc2626;
+            --ice-light: #ef4444;
+            --ice-dark: #991b1b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto; }
+        
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); }
+        .nav-brand a { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-primary); }
+        .nav-brand h1 { font-size: 1.5rem; font-weight: 700; }
+        .nav-current { color: var(--ice-color); font-weight: 600; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: all 0.3s ease; }
+        .nav-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
+        .nav-link.active { background: var(--ice-color); color: white; }
+        
+        .breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; color: var(--text-secondary); font-size: 0.9rem; }
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--ice-color); }
+        .breadcrumb-separator { color: var(--border-color); }
+        
+        .page-header { text-align: center; margin-bottom: 50px; padding: 50px 30px; background: linear-gradient(135deg, var(--ice-dark) 0%, var(--ice-color) 100%); border-radius: 20px; position: relative; overflow: hidden; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; }
+        .page-subtitle { font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; line-height: 1.5; }
+        
+        .learning-container { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 60px; }
+        .sidebar { position: sticky; top: 20px; height: fit-content; }
+        .sidebar-nav { background: var(--bg-card); border-radius: 16px; padding: 25px; border: 2px solid var(--border-color); }
+        .sidebar-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: var(--ice-color); display: flex; align-items: center; gap: 10px; }
+        .sidebar-list { list-style: none; }
+        .sidebar-item { margin-bottom: 12px; }
+        .sidebar-link { display: block; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: 10px; transition: all 0.3s ease; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(220, 38, 38, 0.1); color: var(--ice-color); border-left-color: var(--ice-color); }
+        .sidebar-link.active { background: rgba(220, 38, 38, 0.2); color: var(--ice-color); border-left-color: var(--ice-color); font-weight: 600; }
+        
+        .learning-content { background: var(--bg-card); border-radius: 16px; padding: 40px; border: 2px solid var(--border-color); }
+        .learning-section { margin-bottom: 50px; scroll-margin-top: 20px; }
+        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); }
+        .section-icon { font-size: 2rem; color: var(--ice-color); }
+        .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-top: 5px; }
+        
+        .content-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid var(--ice-color); }
+        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--ice-color); display: flex; align-items: center; gap: 10px; }
+        .card-content { color: var(--text-secondary); line-height: 1.7; }
+        .card-content ul { list-style: none; padding-left: 20px; }
+        .card-content li { margin-bottom: 10px; position: relative; }
+        .card-content li:before { content: '•'; color: var(--ice-color); font-weight: bold; position: absolute; left: -20px; }
+        
+        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255, 255, 255, 0.03); border-radius: 10px; overflow: hidden; }
+        .tech-table th { background: var(--ice-color); color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .tech-table td { padding: 15px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+        .tech-table tr:last-child td { border-bottom: none; }
+        .tech-table tr:hover { background: rgba(220, 38, 38, 0.1); }
+        
+        .knowledge-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 25px 0; }
+        .knowledge-card { background: rgba(220, 38, 38, 0.1); border: 1px solid var(--ice-color); border-radius: 12px; padding: 20px; }
+        .knowledge-title { font-weight: 700; margin-bottom: 10px; color: var(--ice-color); }
+        
+        .footer { text-align: center; padding: 40px 20px; color: var(--text-secondary); border-top: 2px solid var(--border-color); margin-top: 60px; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: var(--text-primary); }
+        .copyright { font-size: 0.9rem; margin-top: 20px; }
+        
+        @media (max-width: 1024px) { .learning-container { grid-template-columns: 1fr; } .sidebar { position: static; } }
+        @media (max-width: 768px) { .page-header h1 { font-size: 2.2rem; } .page-subtitle { font-size: 1.1rem; } .nav-links { display: none; } .knowledge-points { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <a href="index.html"><span>🚗</span><h1>车辆技术学习平台</h1></a>
+            <span class="nav-current">/ ICE深度学习</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">返回首页</a>
+            <a href="#overview" class="nav-link active">ICE概述</a>
+            <a href="#components" class="nav-link">核心组件</a>
+            <a href="#manufacturing" class="nav-link">制造工艺</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="index.html">首页</a><span class="breadcrumb-separator">/</span>
+        <a href="index.html#learning">技术路线</a><span class="breadcrumb-separator">/</span>
+        <span>传统燃油车 (ICE)</span>
+    </div>
+
+    <header class="page-header" id="overview">
+        <h1>⛽ 传统燃油车 (ICE) 深度学习</h1>
+        <p class="page-subtitle">以内燃机为核心动力源的传统汽车技术，技术成熟、产业链完善，正向电动化转型。</p>
+    </header>
+
+    <div class="learning-container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <div class="sidebar-title"><span>📖</span> 学习目录</div>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item"><a href="#overview" class="sidebar-link active">1. 知识概述</a></li>
+                    <li class="sidebar-item"><a href="#definition" class="sidebar-link">2. 定义与分类</a></li>
+                    <li class="sidebar-item"><a href="#principle" class="sidebar-link">3. 工作原理</a></li>
+                    <li class="sidebar-item"><a href="#components" class="sidebar-link">4. 核心组件</a></li>
+                    <li class="sidebar-item"><a href="#materials" class="sidebar-link">5. 材料科学</a></li>
+                    <li class="sidebar-item"><a href="#manufacturing" class="sidebar-link">6. 制造工艺</a></li>
+                    <li class="sidebar-item"><a href="#quality" class="sidebar-link">7. 质量管理</a></li>
+                    <li class="sidebar-item"><a href="#evolution" class="sidebar-link">8. 技术演进</a></li>
+                    <li class="sidebar-item"><a href="#resources" class="sidebar-link">9. 学习资源</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-nav" style="margin-top: 20px;">
+                <div class="sidebar-title"><span>🔗</span> 相关技术</div>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item"><a href="bev-deep-learning.html" class="sidebar-link">BEV 纯电动</a></li>
+                    <li class="sidebar-item"><a href="phev-deep-learning.html" class="sidebar-link">PHEV 插电混动</a></li>
+                    <li class="sidebar-item"><a href="erev-deep-learning.html" class="sidebar-link">EREV 增程式</a></li>
+                    <li class="sidebar-item"><a href="quality-management.html" class="sidebar-link">质量管理体系</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="learning-content">
+            <section class="learning-section" id="overview">
+                <div class="section-header">
+                    <div class="section-icon">📖</div>
+                    <div><h2 class="section-title">1. 知识概述</h2><p class="section-subtitle">传统燃油车的基本概念、技术体系及发展历程</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 学习目标</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>掌握ICE的基本定义和技术分类</li>
+                            <li>理解内燃机工作原理及热力学循环</li>
+                            <li>熟悉传统动力总成系统构成</li>
+                            <li>了解燃油车制造工艺体系</li>
+                            <li>掌握燃油车质量管理要点</li>
+                            <li>了解ICE向电动化转型路径</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 技术体系概览</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>系统分类</th><th>主要组件</th><th>功能描述</th><th>技术特点</th></tr>
+                            <tr><td>动力系统</td><td>发动机、变速箱</td><td>动力产生与传递</td><td>热效率25-40%</td></tr>
+                            <tr><td>燃油系统</td><td>油箱、油泵、喷油器</td><td>燃油存储与供给</td><td>电控喷射技术</td></tr>
+                            <tr><td>排放系统</td><td>三元催化、DPF、GPF</td><td>尾气净化处理</td><td>满足国六标准</td></tr>
+                            <tr><td>冷却系统</td><td>水泵、散热器、节温器</td><td>发动机温度控制</td><td>液冷/风冷系统</td></tr>
+                            <tr><td>润滑系统</td><td>机油泵、滤清器</td><td>运动部件润滑</td><td>减少摩擦磨损</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="content-card" style="background: linear-gradient(135deg, var(--ice-dark) 0%, var(--ice-color) 100%); color: white;">
+                <h3 class="card-title" style="color: white;">🏭 制造经验结合</h3>
+                <div class="card-content">
+                    <p>基于你18年汽车制造经验，ICE技术学习应重点关注：</p>
+                    <ol style="padding-left: 20px; margin: 15px 0;">
+                        <li>发动机装配工艺与质量控制</li>
+                        <li>变速箱制造精度要求</li>
+                        <li>整车NVH控制技术</li>
+                        <li>排放系统装配与检测</li>
+                        <li>传统制造向电动化转型的工艺变化</li>
+                    </ol>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="index.html" style="background: white; color: var(--ice-color); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">返回首页</a>
+                        <a href="bev-deep-learning.html" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">对比BEV技术</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">返回首页</a>
+            <a href="quality-management.html" class="footer-link">质量管理体系</a>
+            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub仓库</a>
+            <a href="#" class="footer-link">制造经验分享</a>
+        </div>
+        <div class="copyright">© 2026 车辆技术学习平台 | ICE深度学习模块 | 基于18年制造经验构建</div>
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">传统制造工艺与电动化转型技术结合</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.learning-section');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    if (scrollY >= (section.offsetTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(target                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

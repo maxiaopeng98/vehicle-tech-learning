@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增程式电动汽车 (EREV) 深度学习 - 车辆技术学习平台</title>
+    <style>
+        :root {
+            --erev-color: #9333ea;
+            --erev-light: #a855f7;
+            --erev-dark: #7c3aed;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto; }
+        
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); }
+        .nav-brand a { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-primary); }
+        .nav-brand h1 { font-size: 1.5rem; font-weight: 700; }
+        .nav-current { color: var(--erev-color); font-weight: 600; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: all 0.3s ease; }
+        .nav-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
+        .nav-link.active { background: var(--erev-color); color: white; }
+        
+        .breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; color: var(--text-secondary); font-size: 0.9rem; }
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--erev-color); }
+        .breadcrumb-separator { color: var(--border-color); }
+        
+        .page-header { text-align: center; margin-bottom: 50px; padding: 50px 30px; background: linear-gradient(135deg, var(--erev-dark) 0%, var(--erev-color) 100%); border-radius: 20px; position: relative; overflow: hidden; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; }
+        .page-subtitle { font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; line-height: 1.5; }
+        
+        .learning-container { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 60px; }
+        .sidebar { position: sticky; top: 20px; height: fit-content; }
+        .sidebar-nav { background: var(--bg-card); border-radius: 16px; padding: 25px; border: 2px solid var(--border-color); }
+        .sidebar-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: var(--erev-color); display: flex; align-items: center; gap: 10px; }
+        .sidebar-list { list-style: none; }
+        .sidebar-item { margin-bottom: 12px; }
+        .sidebar-link { display: block; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: 10px; transition: all 0.3s ease; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(147, 51, 234, 0.1); color: var(--erev-color); border-left-color: var(--erev-color); }
+        .sidebar-link.active { background: rgba(147, 51, 234, 0.2); color: var(--erev-color); border-left-color: var(--erev-color); font-weight: 600; }
+        
+        .learning-content { background: var(--bg-card); border-radius: 16px; padding: 40px; border: 2px solid var(--border-color); }
+        .learning-section { margin-bottom: 50px; scroll-margin-top: 20px; }
+        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); }
+        .section-icon { font-size: 2rem; color: var(--erev-color); }
+        .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-top: 5px; }
+        
+        .content-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid var(--erev-color); }
+        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--erev-color); display: flex; align-items: center; gap: 10px; }
+        .card-content { color: var(--text-secondary); line-height: 1.7; }
+        .card-content ul { list-style: none; padding-left: 20px; }
+        .card-content li { margin-bottom: 10px; position: relative; }
+        .card-content li:before { content: '•'; color: var(--erev-color); font-weight: bold; position: absolute; left: -20px; }
+        
+        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255, 255, 255, 0.03); border-radius: 10px; overflow: hidden; }
+        .tech-table th { background: var(--erev-color); color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .tech-table td { padding: 15px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+        .tech-table tr:last-child td { border-bottom: none; }
+        .tech-table tr:hover { background: rgba(147, 51, 234, 0.1); }
+        
+        .knowledge-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 25px 0; }
+        .knowledge-card { background: rgba(147, 51, 234, 0.1); border: 1px solid var(--erev-color); border-radius: 12px; padding: 20px; }
+        .knowledge-title { font-weight: 700; margin-bottom: 10px; color: var(--erev-color); }
+        
+        .footer { text-align: center; padding: 40px 20px; color: var(--text-secondary); border-top: 2px solid var(--border-color); margin-top: 60px; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: var(--text-primary); }
+        .copyright { font-size: 0.9rem; margin-top: 20px; }
+        
+        @media (max-width: 1024px) { .learning-container { grid-template-columns: 1fr; } .sidebar { position: static; } }
+        @media (max-width: 768px) { .page-header h1 { font-size: 2.2rem; } .page-subtitle { font-size: 1.1rem; } .nav-links { display: none; } .knowledge-points { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <a href="index.html"><span>🚗</span><h1>车辆技术学习平台</h1></a>
+            <span class="nav-current">/ EREV深度学习</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">返回首页</a>
+            <a href="#overview" class="nav-link active">EREV概述</a>
+            <a href="#components" class="nav-link">核心组件</a>
+            <a href="#manufacturing" class="nav-link">制造工艺</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="index.html">首页</a><span class="breadcrumb-separator">/</span>
+        <a href="index.html#learning">技术路线</a><span class="breadcrumb-separator">/</span>
+        <span>增程式电动汽车 (EREV)</span>
+    </div>
+
+    <header class="page-header" id="overview">
+        <h1>🔄 增程式电动汽车 (EREV) 深度学习</h1>
+        <p class="page-subtitle">发动机仅作为发电机为电池充电，车辆始终由电机驱动，兼具纯电驾驶体验和长续航优势。</p>
+    </header>
+
+    <div class="learning-container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <div class="sidebar-title"><span>📖</span> 学习目录</div>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item"><a href="#overview" class="sidebar-link active">1. 知识概述</a></li>
+                    <li class="sidebar-item"><a href="#definition" class="sidebar-link">2. 定义与分类</a></li>
+                    <li class="sidebar-item"><a href="#principle" class="sidebar-link">3. 工作原理</a></li>
+                    <li class="sidebar-item"><a href="#components" class="sidebar-link">4. 核心组件</a></li>
+                    <li class="sidebar-item"><a href="#materials" class="sidebar-link">5. 材料科学</a></li>
+                    <li class="sidebar-item"><a href="#manufacturing" class="sidebar-link">6. 制造工艺</a></li>
+                    <li class="sidebar-item"><a href="#quality" class="sidebar-link">7. 质量管理</a></li>
+                    <li class="sidebar-item"><a href="#application" class="sidebar-link">8. 市场应用</a></li>
+                    <li class="sidebar-item"><a href="#resources" class="sidebar-link">9. 学习资源</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-nav" style="margin-top: 20px;">
+                <div class="sidebar-title"><span>🔗</span> 相关技术</div>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item"><a href="bev-deep-learning.html" class="sidebar-link">BEV 纯电动</a></li>
+                    <li class="sidebar-item"><a href="phev-deep-learning.html" class="sidebar-link">PHEV 插电混动</a></li>
+                    <li class="sidebar-item"><a href="ice-deep-learning.html" class="sidebar-link">ICE 燃油车</a></li>
+                    <li class="sidebar-item"><a href="quality-management.html" class="sidebar-link">质量管理体系</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="learning-content">
+            <section class="learning-section" id="overview">
+                <div class="section-header">
+                    <div class="section-icon">📖</div>
+                    <div><h2 class="section-title">1. 知识概述</h2><p class="section-subtitle">增程式电动汽车的基本概念、技术特点及发展历程</p></div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 学习目标</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>掌握EREV的基本定义和技术特点</li>
+                            <li>理解EREV的能量管理策略</li>
+                            <li>熟悉EREV的增程器工作原理</li>
+                            <li>了解EREV制造工艺的特殊要求</li>
+                            <li>掌握EREV相关的质量管理要点</li>
+                            <li>了解EREV市场现状和发展趋势</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📊 技术特点概览</h3>
+                    <div class="card-content">
+                        <table class="tech-table">
+                            <tr><th>技术特征</th><th>EREV特点</th><th>与PHEV对比</th><th>与BEV对比</th></tr>
+                            <tr><td>驱动方式</td><td>始终电机驱动</td><td>电机/发动机驱动</td><td>电机驱动</td></tr>
+                            <tr><td>发动机作用</td><td>仅发电</td><td>可驱动可发电</td><td>无发动机</td></tr>
+                            <tr><td>驾驶体验</td><td>纯电体验</td><td>模式切换有顿挫</td><td>纯电体验</td></tr>
+                            <tr><td>能量效率</td><td>发电有损耗</td><td>直驱效率高</td><td>能量效率最高</td></tr>
+                            <tr><td>系统复杂度</td><td>中（增程器+三电）</td><td>高（双动力系统）</td><td>低（三电系统）</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="content-card" style="background: linear-gradient(135deg, var(--erev-dark) 0%, var(--erev-color) 100%); color: white;">
+                <h3 class="card-title" style="color: white;">🚀 深入学习提示</h3>
+                <div class="card-content">
+                    <p>EREV技术结合了纯电驾驶体验和燃油车续航优势，是过渡期的重要技术路线。建议重点关注：</p>
+                    <ol style="padding-left: 20px; margin: 15px 0;">
+                        <li>增程器高效工作区间控制</li>
+                        <li>电池SOC智能管理策略</li>
+                        <li>NVH控制（增程器启停）</li>
+                        <li>热管理系统集成</li>
+                    </ol>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="index.html" style="background: white; color: var(--erev-color); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">返回首页</a>
+                        <a href="bev-deep-learning.html" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">学习BEV技术</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">返回首页</a>
+            <a href="https://maxiaopeng98.github.io/erev-structure/" class="footer-link" target="_blank">EREV交互学习</a>
+            <a href="quality-management.html" class="footer-link">质量管理体系</a>
+            <a href="https://github.com/maxiaopeng98" class="footer-link" target="_blank">GitHub仓库</a>
+        </div>
+        <div class="copyright">© 2026 车辆技术学习平台 | EREV深度学习模块</div>
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">基于实际制造经验与质量管理体系构建</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.learning-section');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    if (scrollY >= (section.offsetTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add                        link.classList.add('active');
+                    }
+                });
+            });
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
