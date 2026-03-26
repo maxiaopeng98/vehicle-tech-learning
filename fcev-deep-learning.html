@@ -191,6 +191,44 @@
             </section>
             <section class="learning-section" id="components">
                 <div class="section-header"><div class="section-icon">🔧</div><div><h2 class="section-title">4. 核心组件</h2><p class="section-subtitle">FCEV 关键部件的技术参数、功能要求</p></div></div>
+<!-- FCEV 架构图 -->
+<div style="position:relative;width:100%;height:560px;background:linear-gradient(135deg,rgba(8,145,178,0.1),rgba(15,23,42,0.5));border-radius:16px;border:2px solid var(--fcev-color);margin:30px 0;overflow:hidden;">
+    <svg style="position:absolute;bottom:60px;left:50%;transform:translateX(-50%)" width="900" height="320">
+        <path d="M50,220L110,220L135,160L220,130L550,130L700,160L750,220L850,220L850,270L50,270Z" fill="rgba(8,145,178,0.08)" stroke="var(--fcev-color)" stroke-width="3"/>
+        <circle cx="160" cy="270" r="55" fill="rgba(8,145,178,0.15)" stroke="var(--fcev-color)" stroke-width="4"/><circle cx="160" cy="270" r="28" fill="rgba(8,145,178,0.25)"/>
+        <circle cx="740" cy="270" r="55" fill="rgba(8,145,178,0.15)" stroke="var(--fcev-color)" stroke-width="4"/><circle cx="740" cy="270" r="28" fill="rgba(8,145,178,0.25)"/>
+        <rect x="100" y="175" width="90" height="70" rx="8" fill="url(#fcGrad)" stroke="#0891b2" stroke-width="2"/>
+        <rect x="220" y="240" width="120" height="30" rx="6" fill="#0891b2" stroke="#0e7490" stroke-width="2"/>
+        <circle cx="380" cy="210" r="38" fill="url(#motGrad)" stroke="#06b6d4" stroke-width="2"/>
+        <rect x="450" y="170" width="90" height="50" rx="8" fill="url(#ecuGrad)" stroke="#06b6d4" stroke-width="2"/>
+        <rect x="600" y="235" width="140" height="35" rx="8" fill="url(#h2Grad)" stroke="#10b981" stroke-width="2"/>
+        <circle cx="800" cy="185" r="28" fill="#10b981" stroke="#059669" stroke-width="2"/>
+        <defs>
+            <linearGradient id="fcGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0891b2"/><stop offset="100%" style="stop-color:#0e7490"/></linearGradient>
+            <linearGradient id="motGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#06b6d4"/><stop offset="100%" style="stop-color:#0891b2"/></linearGradient>
+            <linearGradient id="ecuGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#22d3ee"/><stop offset="100%" style="stop-color:#06b6d4"/></linearGradient>
+            <linearGradient id="h2Grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#10b981"/><stop offset="100%" style="stop-color:#059669"/></linearGradient>
+            <marker id="fa" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#10b981"/></marker>
+        </defs>
+        <path d="M220,210L340,210" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#fa)"/>
+        <path d="M418,210L445,210" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#fa)"/>
+        <path d="M670,235L670,210L490,210" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    </svg>
+    <div style="position:absolute;bottom:165px;left:13%;background:#0891b2;color:white;padding:9px 18px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>⚡ 燃料电池电堆</strong><br>氢氧反应发电，额定功率 80-150kW<br>功率密度 3-5kW/L，工作温度 60-80℃<br>唯一排放物：水 (H₂O)'">⚡ 燃料电池</div>
+    <div style="position:absolute;bottom:235px;left:28%;background:#0891b2;color:white;padding:8px 16px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>🔋 动力电池</strong><br>锂电池或超级电容，1-5kWh<br>用于能量回收和峰值功率辅助'">🔋 电池</div>
+    <div style="position:absolute;bottom:165px;left:42%;background:#06b6d4;color:white;padding:9px 18px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>⚡ 驱动电机</strong><br>永磁同步电机，150-200kW<br>效率≥96%，扭矩 300-400N·m'">⚡ 电机</div>
+    <div style="position:absolute;bottom:240px;left:55%;background:#22d3ee;color:white;padding:9px 18px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>🎛️ 电控系统</strong><br>DC/DC 转换器、燃料电池控制器<br>能量管理、系统监控'">🎛️ 电控</div>
+    <div style="position:absolute;bottom:165px;right:22%;background:#10b981;color:white;padding:9px 20px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>⛽ 储氢系统</strong><br>70MPa IV 型瓶，容量 5-6kg H₂<br>续航 500-800km，加氢 3-5 分钟'">⛽ 储氢瓶</div>
+    <div style="position:absolute;top:130px;right:12%;width:55px;height:55px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer" onclick="document.getElementById('fcev-d').innerHTML='<strong>🔌 加氢系统</strong><br>70MPa 高压加氢，3-5 分钟加满<br>加氢口、减压阀、氢气循环泵'">💨</div>
+    <div style="position:absolute;top:20px;right:20px;background:rgba(15,23,42,0.95);padding:18px;border-radius:10px;border:1px solid var(--fcev-color);min-width:190px">
+        <div style="color:white;font-size:13px;margin-bottom:10px;font-weight:600">💡 能量流向</div>
+        <div style="color:var(--text-secondary);font-size:11px;margin-bottom:6px">⛽ 氢气 + 💨 氧气 → ⚡ 电能</div>
+        <div style="color:var(--text-secondary);font-size:11px;margin-bottom:6px">⚡ 电能 → ⚡ 电机 → 🛞 车轮</div>
+        <div style="color:var(--text-secondary);font-size:11px">💧 唯一排放：纯净水</div>
+    </div>
+    <div style="position:absolute;bottom:15px;left:15px;color:var(--text-secondary);font-size:11px;background:rgba(15,23,42,0.8);padding:8px 12px;border-radius:6px">💡 点击组件查看详情</div>
+</div>
+<div id="fcev-d" style="margin:20px 0;padding:18px;background:rgba(8,145,178,0.1);border-radius:10px;border-left:4px solid var(--fcev-color);display:none"></div>
                 <div class="content-card">
                     <h3 class="card-title">🔋 燃料电池电堆</h3>
                     <div class="card-content">
