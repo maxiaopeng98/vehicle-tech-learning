@@ -1,0 +1,326 @@
+9rem;">
+                        这里将展示BEV三电系统的3D交互模型，包括：
+                        • 电池包内部结构
+                        • 电机工作原理动画
+                        • 能量流动可视化
+                    </p>
+                    <button class="tool-btn" style="margin-top: 15px;">
+                        <span>👁️</span> 查看3D模型（开发中）
+                    </button>
+                </div>
+                
+                <!-- 交互式测试 -->
+                <div class="quiz-section">
+                    <div class="quiz-title">🧠 知识测试：BEV分类</div>
+                    <div class="quiz-question">1. 磷酸铁锂电池(LFP)相比三元锂电池的主要优势是什么？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">A. 安全性更高</div>
+                        <div class="quiz-option" data-correct="false">B. 能量密度更高</div>
+                        <div class="quiz-option" data-correct="false">C. 低温性能更好</div>
+                        <div class="quiz-option" data-correct="false">D. 成本更高</div>
+                    </div>
+                    
+                    <div class="quiz-question">2. 800V高压平台相比400V平台的主要优势是什么？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">A. 成本更低</div>
+                        <div class="quiz-option" data-correct="true">B. 充电速度更快</div>
+                        <div class="quiz-option" data-correct="false">C. 技术更成熟</div>
+                        <div class="quiz-option" data-correct="false">D. 安全性更高</div>
+                    </div>
+                    
+                    <button class="quiz-submit" id="submitQuiz2">提交答案</button>
+                    <div class="quiz-feedback" id="quizFeedback2"></div>
+                </div>
+            </section>
+
+            <!-- 3. 工作原理 -->
+            <section class="learning-section" id="principle">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <div>
+                        <h2 class="section-title">3. 工作原理</h2>
+                        <p class="section-subtitle">BEV的能量流动路径、工作模式及控制逻辑</p>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title">🔋 能量流动路径</h3>
+                    <div class="card-content">
+                        <p>BEV的能量流动是一个完整的闭环系统，主要包括三个过程：</p>
+                        
+                        <div class="knowledge-points">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">1. 充电过程</div>
+                                <p><strong>电网交流电</strong> → 车载充电机(OBC) → <strong>直流电</strong> → 电池管理系统(BMS) → <strong>动力电池</strong></p>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">
+                                    <strong>关键技术</strong>：充电协议、电池均衡、热管理
+                                </p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">2. 放电过程</div>
+                                <p><strong>动力电池</strong> → BMS控制 → 电机控制器 → <strong>驱动电机</strong> → 减速器 → <strong>车轮</strong></p>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">
+                                    <strong>关键技术</strong>：扭矩控制、效率优化、NVH控制
+                                </p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">3. 能量回收</div>
+                                <p><strong>车轮制动</strong> → 驱动电机(发电模式) → 电机控制器 → BMS → <strong>动力电池</strong></p>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">
+                                    <strong>关键技术</strong>：制动能量回收、平顺性控制
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-box">
+                            <div class="concept-title">💡 核心概念：能量回收系统</div>
+                            <p><strong>再生制动 (Regenerative Braking)</strong>：在车辆减速或下坡时，驱动电机转换为发电机模式，将车辆的动能转换为电能储存到电池中。</p>
+                            <p><strong>回收效率</strong>：通常可回收10-25%的能耗，显著提升续航里程。</p>
+                            <p><strong>控制策略</strong>：需要与机械制动系统协调，确保制动安全和驾驶舒适性。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title">🎛️ 控制系统架构</h3>
+                    <div class="card-content">
+                        <p>BEV采用分布式控制系统，各控制器通过CAN总线通信：</p>
+                        
+                        <table class="tech-table">
+                            <tr>
+                                <th>控制器</th>
+                                <th>英文缩写</th>
+                                <th>主要功能</th>
+                                <th>关键技术</th>
+                                <th>安全等级</th>
+                            </tr>
+                            <tr>
+                                <td><strong>整车控制器</strong></td>
+                                <td>VCU</td>
+                                <td>整车能量管理、扭矩分配、故障诊断</td>
+                                <td>能量管理算法、故障诊断策略</td>
+                                <td>ASIL C/D</td>
+                            </tr>
+                            <tr>
+                                <td><strong>电池管理系统</strong></td>
+                                <td>BMS</td>
+                                <td>电池状态监控、均衡管理、热管理、安全保护</td>
+                                <td>SOC估算、SOH评估、均衡控制</td>
+                                <td>ASIL C/D</td>
+                            </tr>
+                            <tr>
+                                <td><strong>电机控制器</strong></td>
+                                <td>MCU</td>
+                                <td>电机驱动控制、扭矩控制、效率优化</td>
+                                <td>FOC控制、弱磁控制、MTPA控制</td>
+                                <td>ASIL C</td>
+                            </tr>
+                            <tr>
+                                <td><strong>车载充电机</strong></td>
+                                <td>OBC</td>
+                                <td>交流电转直流电、充电控制、通信</td>
+                                <td>PFC电路、LLC谐振、充电协议</td>
+                                <td>ASIL B</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DC/DC转换器</strong></td>
+                                <td>DCDC</td>
+                                <td>高压转低压，为12V系统供电</td>
+                                <td>隔离变换、效率优化</td>
+                                <td>ASIL B</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="concept-box" style="margin-top: 20px;">
+                            <div class="concept-title">🔧 功能安全概念</div>
+                            <p><strong>ASIL (Automotive Safety Integrity Level)</strong>：汽车安全完整性等级，分为A/B/C/D四个等级，D为最高。</p>
+                            <p><strong>ISO 26262</strong>：道路车辆功能安全标准，要求汽车电子电气系统满足相应的ASIL等级。</p>
+                            <p><strong>BEV关键系统</strong>：VCU、BMS通常要求ASIL C/D等级，确保高压安全。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 知识图谱占位 -->
+                <div class="knowledge-graph">
+                    <div class="model-icon">🧠</div>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <strong>BEV工作原理知识图谱</strong>
+                    </div>
+                    <p style="text-align: center; max-width: 500px; font-size: 0.9rem;">
+                        这里将展示BEV工作原理的知识图谱，包括：
+                        • 能量流动关系图
+                        • 控制系统架构图
+                        • 关键参数关联分析
+                    </p>
+                    <button class="tool-btn" style="margin-top: 15px;">
+                        <span>🔍</span> 探索知识图谱（开发中）
+                    </button>
+                </div>
+            </section>
+
+            <!-- 4. 核心组件 -->
+            <section class="learning-section" id="components">
+                <div class="section-header">
+                    <div class="section-icon">🔧</div>
+                    <div>
+                        <h2 class="section-title">4. 核心组件</h2>
+                        <p class="section-subtitle">BEV的关键部件组成、功能及技术参数</p>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title">🔋 动力电池系统</h3>
+                    <div class="card-content">
+                        <p>动力电池系统是BEV的"心脏"，由电芯、模组、电池包、BMS等组成：</p>
+                        
+                        <table class="tech-table">
+                            <tr>
+                                <th>组件</th>
+                                <th>功能描述</th>
+                                <th>关键技术参数</th>
+                                <th>制造工艺</th>
+                                <th>主要供应商</th>
+                            </tr>
+                            <tr>
+                                <td><strong>电芯</strong></td>
+                                <td>能量存储基本单元，化学反应产生电能</td>
+                                <td>容量(Ah)、电压(V)、能量密度(Wh/kg)、循环寿命</td>
+                                <td>涂布、辊压、分切、卷绕/叠片、注液</td>
+                                <td>宁德时代、比亚迪、LG化学、松下</td>
+                            </tr>
+                            <tr>
+                                <td><strong>电池模组</strong></td>
+                                <td>电芯集成单元，提供机械固定和电气连接</td>
+                                <td>模组电压、容量、尺寸、重量</td>
+                                <td>电芯堆叠、汇流排焊接、采样线束连接</td>
+                                <td>宁德时代、国轩高科、中创新航</td>
+                            </tr>
+                            <tr>
+                                <td><strong>电池包</strong></td>
+                                <td>系统集成单元，包含热管理、防护、结构件</td>
+                                <td>总电压(300-800V)、总容量(50-150kWh)、能量密度</td>
+                                <td>模组安装、BMS安装、高压连接、密封测试</td>
+                                <td>各整车厂自研或外包</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BMS</strong></td>
+                                <td>电池管理系统，监控状态、均衡管理、安全保护</td>
+                                <td>采样精度(±5mV)、均衡电流(100-500mA)、通信速率</td>
+                                <td>PCB设计、软件算法、功能安全认证</td>
+                                <td>宁德时代、比亚迪、均胜电子、德赛西威</td>
+                            </tr>
+                            <tr>
+                                <td><strong>热管理系统</strong></td>
+                                <td>控制电池工作温度，确保安全性和寿命</td>
+                                <td>冷却功率、温度均匀性、能耗</td>
+                                <td>液冷板设计、管路连接、泵阀安装</td>
+                                <td>银轮股份、三花智控、拓普集团</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="concept-box" style="margin-top: 20px;">
+                            <div class="concept-title">📊 电池关键参数解释</div>
+                            <p><strong>能量密度</strong>：单位质量或体积储存的能量(Wh/kg或Wh/L)，决定续航里程。</p>
+                            <p><strong>功率密度</strong>：单位质量或体积输出的功率(W/kg或W/L)，决定加速性能。</p>
+                            <p><strong>循环寿命</strong>：电池充放电循环次数，通常指容量衰减到80%时的循环数。</p>
+                            <p><strong>SOC (State of Charge)</strong>：电池剩余电量百分比，0%-100%。</p>
+                            <p><strong>SOH (State of Health)</strong>：电池健康状态，反映电池老化程度。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title">⚡ 电驱动系统</h3>
+                    <div class="card-content">
+                        <p>电驱动系统将电能转换为机械能，驱动车辆行驶：</p>
+                        
+                        <table class="tech-table">
+                            <tr>
+                                <th>组件</th>
+                                <th>功能描述</th>
+                                <th>关键技术参数</th>
+                                <th>技术趋势</th>
+                                <th>制造难点</th>
+                            </tr>
+                            <tr>
+                                <td><strong>驱动电机</strong></td>
+                                <td>电能→机械能转换，提供驱动力</td>
+                                <td>峰值功率(100-500kW)、峰值扭矩(200-1000Nm)、最高转速(12000-20000rpm)</td>
+                                <td>永磁同步、扁线绕组、油冷技术、多合一集成</td>
+                                <td>磁钢粘贴、动平衡、NVH控制</td>
+                            </tr>
+                            <tr>
+                                <td><strong>电机控制器</strong></td>
+                                <td>控制电机工作，实现扭矩和转速控制</td>
+                                <td>开关频率(5-20kHz)、效率(>98%)、功率密度(>30kW/L)</td>
+                                <td>SiC MOSFET、集成化设计、双面冷却</td>
+                                <td>IGBT焊接、热管理、EMC设计</td>
+                            </tr>
+                            <tr>
+                                <td><strong>减速器</strong></td>
+                                <td>降低转速、增大扭矩，匹配车轮需求</td>
+                                <td>速比(8-12)、效率(>95%)、NVH性能</td>
+                                <td>两档减速器、集成差速器、低噪音设计</td>
+                                <td>齿轮精度、轴承游隙、密封性能</td>
+                            </tr>
+                            <tr>
+                                <td><strong>三合一电驱</strong></td>
+                                <td>电机+控制器+减速器高度集成</td>
+                                <td>总成功率密度(>2.0kW/kg)、系统效率(>90%)</td>
+                                <td>多合一集成、800V平台、油冷技术</td>
+                                <td>系统集成、热管理、振动控制</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="knowledge-points" style="margin-top: 20px;">
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">电机类型对比</div>
+                                <p><strong>永磁同步电机</strong>：效率高、功率密度高、需要稀土材料</p>
+                                <p><strong>异步感应电机</strong>：成本低、高速性能好、效率略低</p>
+                                <p><strong>开关磁阻电机</strong>：结构简单、成本低、噪音大</p>
+                            </div>
+                            <div class="knowledge-card">
+                                <div class="knowledge-title">控制器技术</div>
+                                <p><strong>IGBT</strong>：技术成熟、成本适中、效率一般</p>
+                                <p><strong>SiC MOSFET</strong>：效率高、频率高、成本高</p>
+                                <p><strong>GaN</strong>：未来技术、效率极高、成本很高</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 交互式测试 -->
+                <div class="quiz-section">
+                    <div class="quiz-title">🧠 知识测试：BEV核心组件</div>
+                    <div class="quiz-question">1. BMS（电池管理系统）的主要功能不包括以下哪一项？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">A. 电池状态监控</div>
+                        <div class="quiz-option" data-correct="false">B. 均衡管理</div>
+                        <div class="quiz-option" data-correct="true">C. 驱动电机控制</div>
+                        <div class="quiz-option" data-correct="false">D. 热管理控制</div>
+                    </div>
+                    
+                    <div class="quiz-question">2. 永磁同步电机相比异步感应电机的主要优势是什么？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">A. 效率更高</div>
+                        <div class="quiz-option" data-correct="false">B. 成本更低</div>
+                        <div class="quiz-option" data-correct="false">C. 不需要稀土材料</div>
+                        <div class="quiz-option" data-correct="false">D. 高速性能更好</div>
+                    </div>
+                    
+                    <button class="quiz-submit" id="submitQuiz3">提交答案</button>
+                    <div class="quiz-feedback" id="quizFeedback3"></div>
+                </div>
+            </section>
+
+            <!-- 5. 材料科学 -->
+            <section class="learning-section" id="materials">
+                <div class="section-header">
+                    <div class="section-icon">🏭</div>
+                    <div>
+                        <h2 class="section-title">5. 材料科学</h2>
+                        <p class="section-subtitle">BEV关键部件的材料选择、性能要求及发展趋势</p>
+                    </div>
+                </div>
+                
+                <div class

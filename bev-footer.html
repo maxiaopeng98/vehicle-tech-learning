@@ -1,0 +1,31 @@
+            </section>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">返回首页</a>
+            <a href="quality-management.html" class="footer-link">质量管理体系</a>
+            <a href="https://github.com/maxiaopeng98/vehicle-tech-learning" class="footer-link">GitHub仓库</a>
+            <button class="tool-btn" onclick="exportLearningData()" style="background: transparent; border: 1px solid var(--border-color);">
+                <span>💾</span> 导出学习数据
+            </button>
+        </div>
+        <div class="copyright">
+            <p>© 2026 车辆技术学习平台 | 基于18年汽车制造经验的专业学习系统</p>
+            <p style="font-size: 0.8rem; margin-top: 5px;">最后更新: 2026-03-26 | 学习进度: <span id="footerProgress">0%</span></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript引用 -->
+    <script src="bev-interactive.js"></script>
+    <script>
+        // 页脚进度显示
+        document.addEventListener('DOMContentLoaded', function() {
+            const progress = localStorage.getItem('bevLearningProgress') || '0';
+            document.getElementById('footerProgress').textContent = progress + '%';
+        });
+    </script>
+</body>
+</html>
