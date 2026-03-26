@@ -129,6 +129,75 @@
                     </div>
                 </div>
             </section>
+<!-- 质量管理体系架构图 -->
+<div style="position:relative;width:100%;height:500px;background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(15,23,42,0.5));border-radius:16px;border:2px solid var(--quality-color);margin:30px 0;overflow:hidden;">
+    <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)" width="800" height="400">
+        <!-- IATF16949 核心 -->
+        <rect x="300" y="150" width="200" height="100" rx="10" fill="url(#qGrad)" stroke="#f59e0b" stroke-width="3"/>
+        <text x="400" y="195" text-anchor="middle" fill="white" font-size="16" font-weight="bold">IATF 16949</text>
+        <text x="400" y="220" text-anchor="middle" fill="white" font-size="12">质量管理体系</text>
+        
+        <!-- ISO9001 基础 -->
+        <rect x="300" y="280" width="200" height="70" rx="8" fill="#f59e0b" opacity="0.6" stroke="#d97706" stroke-width="2"/>
+        <text x="400" y="320" text-anchor="middle" fill="white" font-size="14" font-weight="bold">ISO 9001</text>
+        
+        <!-- 五大工具 -->
+        <rect x="50" y="50" width="130" height="80" rx="8" fill="url(#tGrad)" stroke="#fbbf24" stroke-width="2"/>
+        <text x="115" y="85" text-anchor="middle" fill="white" font-size="13" font-weight="bold">APQP</text>
+        <text x="115" y="110" text-anchor="middle" fill="white" font-size="10">产品质量策划</text>
+        
+        <rect x="200" y="50" width="130" height="80" rx="8" fill="url(#tGrad)" stroke="#fbbf24" stroke-width="2"/>
+        <text x="265" y="85" text-anchor="middle" fill="white" font-size="13" font-weight="bold">FMEA</text>
+        <text x="265" y="110" text-anchor="middle" fill="white" font-size="10">失效模式分析</text>
+        
+        <rect x="620" y="50" width="130" height="80" rx="8" fill="url(#tGrad)" stroke="#fbbf24" stroke-width="2"/>
+        <text x="685" y="85" text-anchor="middle" fill="white" font-size="13" font-weight="bold">SPC</text>
+        <text x="685" y="110" text-anchor="middle" fill="white" font-size="10">统计过程控制</text>
+        
+        <rect x="470" y="50" width="130" height="80" rx="8" fill="url(#tGrad)" stroke="#fbbf24" stroke-width="2"/>
+        <text x="535" y="85" text-anchor="middle" fill="white" font-size="13" font-weight="bold">MSA</text>
+        <text x="535" y="110" text-anchor="middle" fill="white" font-size="10">测量系统分析</text>
+        
+        <rect x="335" y="30" width="130" height="80" rx="8" fill="url(#tGrad)" stroke="#fbbf24" stroke-width="2"/>
+        <text x="400" y="65" text-anchor="middle" fill="white" font-size="13" font-weight="bold">PPAP</text>
+        <text x="400" y="90" text-anchor="middle" fill="white" font-size="10">生产件批准</text>
+        
+        <!-- 连接线 -->
+        <line x1="115" y1="130" x2="115" y2="145" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+        <line x1="265" y1="130" x2="265" y2="145" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+        <line x1="400" y1="110" x2="400" y2="145" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="535" y1="130" x2="535" y2="145" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+        <line x1="685" y1="130" x2="685" y2="145" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+        <line x1="400" y1="250" x2="400" y2="275" stroke="#f59e0b" stroke-width="2"/>
+        
+        <defs>
+            <linearGradient id="qGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#d97706"/>
+            </linearGradient>
+            <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#fbbf24"/><stop offset="100%" style="stop-color:#f59e0b"/>
+            </linearGradient>
+        </defs>
+    </svg>
+    <div style="position:absolute;top:20px;left:20px;color:white;font-size:16px;font-weight:600">🏆 汽车质量管理体系架构</div>
+    <div style="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.9);padding:20px;border-radius:10px;border:1px solid var(--quality-color);text-align:center">
+        <div style="color:#f59e0b;font-size:14px;margin-bottom:10px;font-weight:600">📋 核心要求</div>
+        <div style="color:var(--text-secondary);font-size:12px;margin-bottom:6px">✅ 过程方法 + 风险思维</div>
+        <div style="color:var(--text-secondary);font-size:12px;margin-bottom:6px">✅ 顾客导向 + 持续改进</div>
+        <div style="color:var(--text-secondary);font-size:12px">✅ PDCA 循环</div>
+    </div>
+    <div style="position:absolute;bottom:20px;left:20px;color:var(--text-secondary);font-size:11px;background:rgba(15,23,42,0.8);padding:8px 12px;border-radius:6px">💡 IATF16949 = ISO9001 + 汽车行业特殊要求</div>
+</div>
+<div style="margin:20px 0;padding:18px;background:rgba(245,158,11,0.1);border-radius:10px;border-left:4px solid var(--quality-color)">
+    <h4 style="color:var(--quality-color);margin-bottom:10px">📚 五大核心工具说明</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;color:var(--text-secondary);font-size:13px">
+        <div><strong>APQP</strong>：产品质量先期策划，确保产品满足要求</div>
+        <div><strong>PPAP</strong>：生产件批准程序，验证生产过程能力</div>
+        <div><strong>FMEA</strong>：失效模式与影响分析，预防潜在失效</div>
+        <div><strong>SPC</strong>：统计过程控制，监控过程稳定性</div>
+        <div><strong>MSA</strong>：测量系统分析，评估测量可靠性</div>
+    </div>
+</div>
             <section class="learning-section" id="iso9001">
                 <div class="section-header"><div class="section-icon">🏢</div><div><h2 class="section-title">2. ISO9001 体系</h2><p class="section-subtitle">ISO9001 质量管理体系核心要求及应用</p></div></div>
                 <div class="content-card">
