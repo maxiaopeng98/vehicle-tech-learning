@@ -208,6 +208,36 @@
                     <div class="section-icon">🔧</div>
                     <div><h2 class="section-title">4. 核心组件</h2><p class="section-subtitle">ICE 关键部件的技术参数、功能要求</p></div>
                 </div>
+<!-- ICE 架构图 -->
+<div style="position:relative;width:100%;height:520px;background:linear-gradient(135deg,rgba(220,38,38,0.1),rgba(15,23,42,0.5));border-radius:16px;border:2px solid var(--ice-color);margin:30px 0;overflow:hidden;">
+    <svg style="position:absolute;bottom:60px;left:50%;transform:translateX(-50%)" width="850" height="300">
+        <path d="M50,210L100,210L120,160L200,130L500,130L650,160L700,210L800,210L800,260L50,260Z" fill="rgba(220,38,38,0.08)" stroke="var(--ice-color)" stroke-width="3"/>
+        <circle cx="150" cy="260" r="50" fill="rgba(220,38,38,0.15)" stroke="var(--ice-color)" stroke-width="4"/>
+        <circle cx="150" cy="260" r="25" fill="rgba(220,38,38,0.25)"/>
+        <circle cx="700" cy="260" r="50" fill="rgba(220,38,38,0.15)" stroke="var(--ice-color)" stroke-width="4"/>
+        <circle cx="700" cy="260" r="25" fill="rgba(220,38,38,0.25)"/>
+        <rect x="90" y="170" width="100" height="70" rx="8" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+        <rect x="210" y="185" width="60" height="45" rx="6" fill="#dc2626" opacity="0.8"/>
+        <rect x="280" y="200" width="250" height="12" rx="4" fill="#dc2626" opacity="0.5"/>
+        <rect x="540" y="190" width="50" height="35" rx="5" fill="#dc2626" opacity="0.7"/>
+        <rect x="620" y="225" width="90" height="28" rx="6" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+        <defs><marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f59e0b"/></marker></defs>
+        <path d="M190,205L205,205" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arr)"/>
+        <path d="M270,206L535,206" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+    </svg>
+    <div style="position:absolute;bottom:165px;left:12%;background:#dc2626;color:white;padding:8px 16px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('ice-d').innerHTML='<strong>🔥 发动机</strong><br>内燃机，将燃料燃烧转化为机械能<br>排量 1.0-6.0L，功率 50-500kW<br>热效率 30-45%'">🔥 发动机</div>
+    <div style="position:absolute;bottom:190px;left:26%;background:#dc2626;color:white;padding:8px 16px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('ice-d').innerHTML='<strong>⚙️ 变速箱</strong><br>变速变扭，MT/AT/DCT/CVT<br>5-10 速，传动效率 90-95%'">⚙️ 变速箱</div>
+    <div style="position:absolute;bottom:165px;right:20%;background:#dc2626;color:white;padding:8px 16px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('ice-d').innerHTML='<strong>🔗 传动系统</strong><br>传动轴、差速器、半轴<br>前驱/后驱/四驱'">🔗 传动</div>
+    <div style="position:absolute;bottom:165px;right:12%;background:#f59e0b;color:white;padding:8px 16px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer" onclick="document.getElementById('ice-d').innerHTML='<strong>⛽ 燃油系统</strong><br>油箱 40-80L，续航 500-1000km<br>92#/95#/98# 汽油'">⛽ 油箱</div>
+    <div style="position:absolute;top:20px;right:20px;background:rgba(15,23,42,0.95);padding:18px;border-radius:10px;border:1px solid var(--ice-color);min-width:180px">
+        <div style="color:white;font-size:13px;margin-bottom:10px;font-weight:600">💡 动力路径</div>
+        <div style="color:var(--text-secondary);font-size:11px;margin-bottom:6px">🔥 发动机 → ⚙️ 变速箱</div>
+        <div style="color:var(--text-secondary);font-size:11px;margin-bottom:6px">⚙️ 变速箱 → 🔗 传动轴</div>
+        <div style="color:var(--text-secondary);font-size:11px">🔗 传动轴 → 🛞 车轮</div>
+    </div>
+    <div style="position:absolute;bottom:15px;left:15px;color:var(--text-secondary);font-size:11px;background:rgba(15,23,42,0.8);padding:8px 12px;border-radius:6px">💡 点击组件查看详情</div>
+</div>
+<div id="ice-d" style="margin:20px 0;padding:18px;background:rgba(220,38,38,0.1);border-radius:10px;border-left:4px solid var(--ice-color);display:none"></div>
                 <div class="content-card">
                     <h3 class="card-title">🔥 发动机系统</h3>
                     <div class="card-content">
