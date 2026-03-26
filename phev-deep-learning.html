@@ -674,6 +674,196 @@
             </section>
             
             <!-- 4. 核心组件 -->
+<!-- PHEV 架构图组件 -->
+<div style="position: relative; width: 100%; height: 580px; background: linear-gradient(135deg, rgba(22, 163, 74, 0.1) 0%, rgba(15, 23, 42, 0.5) 100%); border-radius: 16px; overflow: hidden; border: 2px solid var(--phev-color); margin: 30px 0;">
+    <!-- SVG 架构图 -->
+    <svg style="position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);" width="900" height="330">
+        <!-- 车身轮廓 -->
+        <path d="M 50,230 L 110,230 L 135,170 L 220,140 L 550,140 L 700,170 L 750,230 L 850,230 L 850,280 L 50,280 Z" 
+              fill="rgba(22, 163, 74, 0.08)" stroke="var(--phev-color)" stroke-width="3" stroke-linejoin="round"/>
+        
+        <!-- 车轮 -->
+        <circle cx="160" cy="280" r="55" fill="rgba(22, 163, 74, 0.15)" stroke="var(--phev-color)" stroke-width="4"/>
+        <circle cx="160" cy="280" r="28" fill="rgba(22, 163, 74, 0.25)"/>
+        <circle cx="740" cy="280" r="55" fill="rgba(22, 163, 74, 0.15)" stroke="var(--phev-color)" stroke-width="4"/>
+        <circle cx="740" cy="280" r="28" fill="rgba(22, 163, 74, 0.25)"/>
+        
+        <!-- 发动机 (前部) -->
+        <rect x="100" y="180" width="90" height="70" rx="8" fill="url(#engineGradient)" stroke="#dc2626" stroke-width="2"/>
+        
+        <!-- 电机 (中部) -->
+        <circle cx="320" cy="215" r="40" fill="url(#motorGradient)" stroke="var(--phev-light)" stroke-width="2"/>
+        
+        <!-- 电池包 (底盘) -->
+        <rect x="240" y="245" width="350" height="28" rx="6" fill="url(#batteryGradient)" stroke="var(--phev-color)" stroke-width="2"/>
+        
+        <!-- 电控系统 -->
+        <rect x="420" y="175" width="100" height="55" rx="10" fill="url(#ecuGradient)" stroke="var(--phev-light)" stroke-width="2"/>
+        
+        <!-- 油箱 -->
+        <rect x="620" y="245" width="100" height="35" rx="8" fill="url(#tankGradient)" stroke="#f59e0b" stroke-width="2"/>
+        
+        <!-- 充电口 -->
+        <circle cx="800" cy="190" r="30" fill="url(#chargeGradient)" stroke="#10b981" stroke-width="2"/>
+        
+        <!-- 变速箱 -->
+        <rect x="230" y="205" width="55" height="45" rx="6" fill="url(#transGradient)" stroke="var(--phev-light)" stroke-width="2"/>
+        
+        <!-- 能量流向 - 电驱模式 -->
+        <path d="M 415,245 L 415,225 L 365,225" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-dasharray="5,5"/>
+        
+        <!-- 能量流向 - 混动模式 -->
+        <path d="M 190,215 L 225,215" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowOrange)"/>
+        
+        <!-- 能量流向 - 发动机充电 -->
+        <path d="M 190,215 L 190,240 L 260,240" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+        
+        <!-- 充电箭头 -->
+        <path d="M 800,155 L 800,110 L 470,110 L 470,165" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowGreen)"/>
+        
+        <!-- 渐变定义 -->
+        <defs>
+            <linearGradient id="engineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="motorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#16a34a;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#15803d;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="batteryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#16a34a;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#15803d;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="ecuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="tankGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="chargeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="transGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#16a34a;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#15803d;stop-opacity:1" />
+            </linearGradient>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+            </marker>
+            <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+            </marker>
+        </defs>
+    </svg>
+    
+    <!-- 组件标签 -->
+    <div style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); background: var(--phev-color); color: white; padding: 9px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.08)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showPhevDetail('battery')">
+        🔋 动力电池 (10-40kWh)
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; left: 13%; background: #dc2626; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showPhevDetail('engine')">
+        🔥 发动机
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; left: 33%; background: var(--phev-light); color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showPhevDetail('motor')">
+        ⚡ 驱动电机
+    </div>
+    
+    <div style="position: absolute; bottom: 255px; left: 50%; transform: translateX(-50%); background: #22c55e; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='translateX(-50%) scale(1.08)'" onmouseout="this.style.transform='translateX(-50%) scale(1)'"
+         onclick="showPhevDetail('ecu')">
+        🎛️ 整车控制器
+    </div>
+    
+    <div style="position: absolute; bottom: 170px; right: 18%; background: #f59e0b; color: white; padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showPhevDetail('tank')">
+        ⛽ 燃油箱
+    </div>
+    
+    <div style="position: absolute; top: 120px; right: 10%; width: 60px; height: 60px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);"
+         onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+         onclick="showPhevDetail('charge')">
+        🔌
+    </div>
+    
+    <!-- 图例 -->
+    <div style="position: absolute; top: 25px; right: 25px; background: rgba(15, 23, 42, 0.95); padding: 20px; border-radius: 12px; border: 1px solid var(--phev-color); min-width: 220px;">
+        <div style="color: white; font-size: 14px; margin-bottom: 12px; font-weight: 600;">💡 工作模式</div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 纯电模式：电池 → 电机 → 车轮
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;">
+            <span style="color: #f59e0b; margin-right: 8px;">➜</span> 混动模式：发动机 + 电机协同
+        </div>
+        <div style="color: var(--text-secondary); font-size: 12px; display: flex; align-items: center;">
+            <span style="color: #10b981; margin-right: 8px;">➜</span> 充电模式：充电桩/发动机 → 电池
+        </div>
+    </div>
+    
+    <!-- 提示 -->
+    <div style="position: absolute; bottom: 25px; left: 25px; color: var(--text-secondary); font-size: 12px; background: rgba(15, 23, 42, 0.8); padding: 11px 16px; border-radius: 8px;">
+        💡 点击组件查看技术参数
+    </div>
+</div>
+
+<!-- 详情面板 -->
+<div id="phev-detail-panel" style="margin: 20px 0; padding: 20px; background: rgba(22, 163, 74, 0.1); border-radius: 12px; border-left: 4px solid var(--phev-color); display: none;">
+    <h4 id="phev-detail-title" style="color: var(--phev-color); margin-bottom: 10px; font-size: 17px;"></h4>
+    <p id="phev-detail-content" style="color: var(--text-secondary); line-height: 1.7; font-size: 14px;"></p>
+</div>
+
+<script>
+function showPhevDetail(component) {
+    const details = {
+        'battery': {
+            title: '🔋 动力电池系统',
+            content: '<strong>电池类型：</strong>三元锂或磷酸铁锂<br><strong>电池容量：</strong>10-40 kWh<br><strong>电压平台：</strong>300-400V<br><strong>纯电续航：</strong>50-200 km (NEDC)<br><strong>快充能力：</strong>3-6 kW 交流充电<br><strong>功能：</strong>纯电驱动、能量回收、辅助加速'
+        },
+        'engine': {
+            title: '🔥 发动机系统',
+            content: '<strong>发动机类型：</strong>1.5L/2.0L 阿特金森循环<br><strong>最大功率：</strong>80-150 kW<br><strong>最大扭矩：</strong>150-300 N·m<br><strong>热效率：</strong>≥43% (混动专用)<br><strong>功能：</strong>直接驱动车轮、发电为电池充电、混合驱动'
+        },
+        'motor': {
+            title: '⚡ 驱动电机系统',
+            content: '<strong>电机类型：</strong>永磁同步电机 (PMSM)<br><strong>额定功率：</strong>100-200 kW<br><strong>峰值扭矩：</strong>250-400 N·m<br><strong>最高效率：</strong>≥96%<br><strong>功能：</strong>纯电驱动、混动辅助、能量回收、启动发动机'
+        },
+        'ecu': {
+            title: '🎛️ 整车控制器 (VCU)',
+            content: '<strong>核心功能：</strong>能量管理、模式切换、扭矩分配<br><strong>控制策略：</strong>基于 SOC、车速、油门开度智能分配动力<br><strong>工作模式：</strong>纯电/串联/并联/发动机直驱/能量回收<br><strong>通信：</strong>CAN 总线协调各系统'
+        },
+        'tank': {
+            title: '⛽ 燃油系统',
+            content: '<strong>油箱容量：</strong>45-65 L<br><strong>燃油标号：</strong>92#/95# 汽油<br><strong>综合续航：</strong>800-1200 km (满油满电)<br><strong>馈电油耗：</strong>4-7 L/100km<br><strong>功能：</strong>为发动机提供燃油，支持长途行驶'
+        },
+        'charge': {
+            title: '🔌 充电系统',
+            content: '<strong>交流慢充：</strong>3-6 kW (220V/16A), 充满约 3-8 小时<br><strong>直流快充：</strong>部分车型支持 (15-30 kW)<br><strong>充电接口：</strong>国标 GB/T<br><strong>车载充电机 (OBC)：</strong>3-6 kW<br><strong>功能：</strong>外接充电、预约充电、反向放电 (部分车型)'
+        }
+    };
+    
+    const panel = document.getElementById('phev-detail-panel');
+    const title = document.getElementById('phev-detail-title');
+    const content = document.getElementById('phev-detail-content');
+    
+    if (details[component]) {
+        title.innerHTML = details[component].title;
+        content.innerHTML = details[component].content;
+        panel.style.display = 'block';
+        panel.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+}
+</script>
             <section class="learning-section" id="components">
                 <div class="section-header">
                     <div class="section-icon">🔧</div>
